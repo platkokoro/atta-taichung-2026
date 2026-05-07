@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATTA 台中国際旅展 アンケートレポート | プラットヨネザワ</title>
+<meta name="description" content="プラットヨネザワ株式会社が台湾ATTA台中国際旅展で実施してきた来場者アンケートの分析レポート アーカイブ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0a1628;
+  --navy-2:#142442;
+  --gold:#c9a227;
+  --gold-soft:#e0bf4c;
+  --gold-dim:#8a6f1c;
+  --text:#f0f0f0;
+  --muted:#9fb0c8;
+  --line:rgba(201,162,39,.25);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  background:var(--navy);
+  color:var(--text);
+  font-family:'Noto Sans JP',sans-serif;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+body{overflow-x:hidden}
+h1,h2,h3{font-family:'Noto Serif JP',serif;font-weight:700;letter-spacing:.02em;line-height:1.3}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* ===== Hero ===== */
+.hero{
+  position:relative;
+  padding:96px 0 72px;
+  background:
+    radial-gradient(900px 500px at 85% -10%,rgba(201,162,39,.18),transparent 60%),
+    radial-gradient(700px 400px at 10% 110%,rgba(201,162,39,.10),transparent 60%),
+    linear-gradient(180deg,#0a1628 0%,#0d1b35 100%);
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(201,162,39,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,162,39,.06) 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+  mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
+}
+.hero .mt{
+  display:inline-block;
+  font-family:'DM Serif Display',serif;
+  color:var(--gold-soft);
+  font-size:13px;
+  letter-spacing:.4em;
+  text-transform:uppercase;
+  border:1px solid rgba(201,162,39,.45);
+  padding:6px 16px;
+  border-radius:999px;
+  background:rgba(201,162,39,.06);
+  margin-bottom:26px;
+}
+.hero h1{
+  font-size:clamp(30px,4.6vw,52px);
+  color:#fff;
+  margin-bottom:14px;
+}
+.hero h1 .accent{color:var(--gold-soft)}
+.hero .sub-en{
+  font-family:'DM Serif Display',serif;
+  color:#cdd6e3;
+  font-size:clamp(15px,1.5vw,20px);
+  margin-bottom:22px;
+  letter-spacing:.02em;
+}
+.hero .lead{
+  color:#cdd6e3;
+  font-size:clamp(14px,1.3vw,16px);
+  max-width:760px;
+}
+.hero-meta{
+  margin-top:38px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px 36px;
+  font-size:13px;
+  color:var(--muted);
+}
+.hero-meta .item .l{
+  font-size:11px;
+  letter-spacing:.3em;
+  color:var(--gold-soft);
+  text-transform:uppercase;
+  display:block;
+  margin-bottom:4px;
+}
+.hero-meta .item .v{
+  font-family:'DM Serif Display',serif;
+  color:#fff;
+  font-size:18px;
+}
+
+/* ===== Section heading ===== */
+.section{padding:60px 0 80px}
+.section-head{margin-bottom:36px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.section-head .num{font-family:'DM Serif Display',serif;color:var(--gold);font-size:13px;letter-spacing:.4em}
+.section-head h2{font-size:clamp(22px,2.8vw,30px);color:#fff;margin-top:6px}
+.section-head .right{
+  font-size:12px;
+  color:var(--muted);
+  font-family:'DM Serif Display',serif;
+  letter-spacing:.2em;
+}
+
+/* ===== Card grid ===== */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:28px;
+}
+@media(max-width:760px){.cards{grid-template-columns:1fr;gap:22px}}
+
+.card{
+  position:relative;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(201,162,39,.3);
+  border-radius:12px;
+  overflow:hidden;
+  text-decoration:none;
+  color:inherit;
+  display:flex;
+  flex-direction:column;
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+.card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(201,162,39,.7);
+  box-shadow:0 18px 44px -22px rgba(201,162,39,.4),0 8px 24px -10px rgba(0,0,0,.5);
+}
+.card.disabled{cursor:default}
+.card.disabled:hover{transform:none;border-color:rgba(201,162,39,.3);box-shadow:none}
+
+.card .img-wrap{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  background:
+    linear-gradient(135deg,#142442 0%,#1d3158 50%,#0d1b35 100%);
+  overflow:hidden;
+}
+.card .img-wrap::after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,22,40,0) 50%,rgba(10,22,40,.55) 100%);
+  pointer-events:none;
+}
+.card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:saturate(1.05);
+}
+.card.no-image .img-wrap::before{
+  content:"";
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(201,162,39,.10) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,162,39,.10) 1px,transparent 1px);
+  background-size:32px 32px;
+  mask-image:radial-gradient(ellipse at center,black 20%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse at center,black 20%,transparent 75%);
+}
+.card.no-image .img-wrap span.placeholder{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'DM Serif Display',serif;
+  font-size:42px;
+  color:rgba(201,162,39,.4);
+  letter-spacing:.1em;
+}
+
+/* round badge */
+.round-badge{
+  position:absolute;
+  top:14px;
+  left:14px;
+  z-index:2;
+  font-family:'Noto Serif JP',serif;
+  font-weight:700;
+  background:rgba(10,22,40,.78);
+  color:var(--gold-soft);
+  border:1px solid rgba(201,162,39,.5);
+  padding:5px 12px;
+  border-radius:999px;
+  font-size:12px;
+  letter-spacing:.05em;
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+}
+
+/* status badge */
+.status-badge{
+  position:absolute;
+  top:14px;
+  right:14px;
+  z-index:2;
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  padding:5px 11px;
+  border-radius:999px;
+  font-weight:600;
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+}
+.status-badge.live{
+  background:rgba(201,162,39,.95);
+  color:#0a1628;
+}
+.status-badge.coming{
+  background:rgba(255,255,255,.12);
+  color:#cdd6e3;
+  border:1px solid rgba(255,255,255,.25);
+}
+
+/* card body */
+.card .body{
+  padding:22px 24px 26px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.card .period{
+  font-family:'DM Serif Display',serif;
+  color:var(--gold-soft);
+  font-size:14px;
+  letter-spacing:.04em;
+}
+.card .title{
+  font-family:'Noto Serif JP',serif;
+  color:#fff;
+  font-size:21px;
+  font-weight:700;
+  line-height:1.4;
+  margin-top:2px;
+}
+.card .venue{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:6px;
+}
+.card .cta-row{
+  margin-top:auto;
+  padding-top:14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.card .cta{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:'DM Serif Display',serif;
+  font-size:13px;
+  letter-spacing:.18em;
+  color:var(--gold-soft);
+  text-transform:uppercase;
+}
+.card .cta .arrow{
+  display:inline-block;
+  transition:transform .2s ease;
+}
+.card:hover .cta .arrow{transform:translateX(6px)}
+.card.disabled .cta{color:rgba(255,255,255,.35)}
+.card.disabled .cta .arrow{display:none}
+.card .meta-tag{
+  font-size:11px;
+  letter-spacing:.2em;
+  color:var(--muted);
+  text-transform:uppercase;
+  font-family:'DM Serif Display',serif;
+}
+
+/* ===== Footer ===== */
+footer{
+  border-top:1px solid var(--line);
+  padding:38px 0 50px;
+  background:#08111e;
+  text-align:center;
+}
+footer .brand{
+  font-family:'Noto Serif JP',serif;
+  font-size:15px;
+  color:var(--gold-soft);
+  margin-bottom:6px;
+}
+footer .copy{
+  font-size:12px;
+  color:var(--muted);
+  letter-spacing:.04em;
+}
+footer .note{
+  margin-top:10px;
+  font-size:11px;
+  color:rgba(159,176,200,.65);
+  letter-spacing:.06em;
+}
+
+/* anim */
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.section .cards > *{animation:fadeIn .55s ease-out both}
+.section .cards > *:nth-child(1){animation-delay:.04s}
+.section .cards > *:nth-child(2){animation-delay:.10s}
+.section .cards > *:nth-child(3){animation-delay:.16s}
+.section .cards > *:nth-child(4){animation-delay:.22s}
+.section .cards > *:nth-child(5){animation-delay:.28s}
+</style>
+</head>
+<body>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="wrap">
+    <span class="mt">Survey Report Archive</span>
+    <h1>ATTA 台中国際旅展<br>アンケート<span class="accent">レポート</span></h1>
+    <div class="sub-en">ATTA Taichung International Travel Fair — Survey Report Archive</div>
+    <p class="lead">プラットヨネザワ株式会社が台湾ATTA台中国際旅展で継続的に実施してきた来場者アンケートの分析レポートをまとめたアーカイブです。中国語圏の旅行者の体験ニーズ・価格感度・情報接点を、米沢の観光事業者向けに継続観測しています。</p>
+    <div class="hero-meta">
+      <div class="item"><span class="l">Organizer</span><span class="v">プラットヨネザワ株式会社</span></div>
+      <div class="item"><span class="l">Event</span><span class="v">ATTA 台中国際旅展</span></div>
+      <div class="item"><span class="l">Reports</span><span class="v">5 Editions</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CARDS ============== -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="num">REPORTS</div>
+        <h2>各回レポート</h2>
+      </div>
+      <div class="right">2024 — 2026</div>
+    </div>
+
+    <div class="cards">
+
+      <!-- Round 5 (LIVE) -->
+      <a class="card" href="./2026-04/" aria-label="第5回レポートを開く">
+        <div class="img-wrap">
+          <span class="round-badge">第5回</span>
+          <span class="status-badge live">レポート公開中</span>
+          <img src="https://drive.google.com/thumbnail?id=10jr-rcvdPk33B-NuuKtjISyMCUVfIbES&sz=w1600" alt="2026年4月 ATTA台中国際旅展 第23回 ブース風景" loading="lazy" onerror="this.parentElement.classList.add('no-image');this.style.display='none'">
+        </div>
+        <div class="body">
+          <div class="period">2026.04.24 – 04.27 (FRI–MON)</div>
+          <div class="title">ATTA 台中国際旅展 第23回</div>
+          <div class="venue">台湾・台中｜940件の回答を分析</div>
+          <div class="cta-row">
+            <span class="cta">分析レポートを開く <span class="arrow">→</span></span>
+            <span class="meta-tag">FY2026 SPRING</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Round 4 (COMING) -->
+      <div class="card disabled no-image" aria-label="第4回 準備中">
+        <div class="img-wrap">
+          <span class="round-badge">第4回</span>
+          <span class="status-badge coming">準備中</span>
+          <img src="https://drive.google.com/thumbnail?id=1IwwBNGgmBzFFis8K5CiCuk5g1M7IysIy&sz=w1600" alt="2025年10月 ATTA台中国際旅展 第22回 ブース風景" loading="lazy" onerror="this.parentElement.classList.add('no-image');this.style.display='none'">
+        </div>
+        <div class="body">
+          <div class="period">2025.10.24 – 10.27 (FRI–MON)</div>
+          <div class="title">ATTA 台中国際旅展 第22回</div>
+          <div class="venue">台湾・台中</div>
+          <div class="cta-row">
+            <span class="cta">公開準備中</span>
+            <span class="meta-tag">FY2025 AUTUMN</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Round 3 (COMING) -->
+      <div class="card disabled no-image" aria-label="第3回 準備中">
+        <div class="img-wrap">
+          <span class="round-badge">第3回</span>
+          <span class="status-badge coming">準備中</span>
+          <img src="https://drive.google.com/thumbnail?id=1iB30CY4TyNpMKAEsqyjOFlnP4PuFggTu&sz=w1600" alt="2025年4月 ATTA台中国際旅展 第21回 ブース風景" loading="lazy" onerror="this.parentElement.classList.add('no-image');this.style.display='none'">
+        </div>
+        <div class="body">
+          <div class="period">2025.04.25 – 04.28 (FRI–MON)</div>
+          <div class="title">ATTA 台中国際旅展 第21回</div>
+          <div class="venue">台湾・台中</div>
+          <div class="cta-row">
+            <span class="cta">公開準備中</span>
+            <span class="meta-tag">FY2025 SPRING</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Round 2 (COMING) -->
+      <div class="card disabled no-image" aria-label="第2回 準備中">
+        <div class="img-wrap">
+          <span class="round-badge">第2回</span>
+          <span class="status-badge coming">準備中</span>
+          <img src="https://drive.google.com/thumbnail?id=1EPWRjTLmzJrE2za4z7VoMpqVXHq6rKtH&sz=w1600" alt="2024年10月 ATTA台中国際旅展 第20回 ブース風景" loading="lazy" onerror="this.parentElement.classList.add('no-image');this.style.display='none'">
+        </div>
+        <div class="body">
+          <div class="period">2024.10.25 – 10.28 (FRI–MON)</div>
+          <div class="title">ATTA 台中国際旅展 第20回</div>
+          <div class="venue">台湾・台中</div>
+          <div class="cta-row">
+            <span class="cta">公開準備中</span>
+            <span class="meta-tag">FY2024 AUTUMN</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Round 1 (COMING - no image) -->
+      <div class="card disabled no-image" aria-label="第1回 準備中">
+        <div class="img-wrap">
+          <span class="round-badge">第1回</span>
+          <span class="status-badge coming">準備中</span>
+          <span class="placeholder">ATTA 19</span>
+        </div>
+        <div class="body">
+          <div class="period">2024.04.14 – 04.17 (SUN–WED)</div>
+          <div class="title">ATTA 台中国際旅展 第19回</div>
+          <div class="venue">台湾・台中</div>
+          <div class="cta-row">
+            <span class="cta">公開準備中</span>
+            <span class="meta-tag">FY2024 SPRING</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="wrap">
+    <div class="brand">プラットヨネザワ株式会社</div>
+    <div class="copy">Copyright © 2026 プラットヨネザワ株式会社</div>
+    <div class="note">本レポートはAIによる自動分析を含みます</div>
+  </div>
+</footer>
+
+</body>
+</html>
