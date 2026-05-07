@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATTA台中国際旅展 第4回 来場者アンケート 分析レポート | 米沢市観光</title>
+<meta name="description" content="2025年10月開催・ATTA台中国際旅展第22回の来場者アンケート803件を分析。台湾・中国語圏旅行者の米沢への関心・訪問意向・興味体験を詳解。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Serif+JP:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg-primary: #0a1628;
+    --bg-secondary: #0d1f3c;
+    --bg-card: #112244;
+    --bg-card-hover: #152a55;
+    --accent-gold: #c9a227;
+    --accent-gold-light: #e8c547;
+    --accent-gold-dim: rgba(201,162,39,0.15);
+    --text-primary: #f0e6d3;
+    --text-secondary: #a09080;
+    --text-muted: #6a5a50;
+    --border: rgba(201,162,39,0.25);
+    --border-subtle: rgba(201,162,39,0.10);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 6vw, 5rem);
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://drive.google.com/uc?export=view&id=1K7fWUzYyP4a_q0aZs0WQkGFO7qwPkrX9');
+    background-size: cover;
+    background-position: center 30%;
+    filter: brightness(0.35) saturate(0.7);
+  }
+  .hero-noise {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+  }
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(10,22,40,0.5) 40%,
+      var(--bg-primary) 100%
+    );
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+    letter-spacing: 0.25em;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 2.5rem;
+    height: 1px;
+    background: var(--accent-gold);
+    opacity: 0.7;
+  }
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 6vw, 5.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent-gold-light);
+  }
+  .hero-subtitle {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.03em;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem 2.5rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.8rem;
+    margin-top: 0.5rem;
+  }
+  .hero-meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
+  .hero-meta-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-family: 'DM Serif Display', serif;
+  }
+  .hero-meta-value {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    color: var(--text-primary);
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 500;
+  }
+  /* ── NAV ── */
+  .toc {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 0 clamp(1.5rem, 6vw, 5rem);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .toc-inner {
+    display: flex;
+    overflow-x: auto;
+    gap: 0;
+    scrollbar-width: none;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .toc-inner::-webkit-scrollbar { display: none; }
+  .toc-link {
+    display: block;
+    padding: 1rem 1.2rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    font-family: 'DM Serif Display', serif;
+  }
+  .toc-link:hover {
+    color: var(--accent-gold);
+    border-bottom-color: var(--accent-gold);
+  }
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 6vw, 5rem);
+  }
+  .section {
+    padding: clamp(4rem, 8vw, 7rem) 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .section-header {
+    margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+  }
+  .section-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.8rem;
+  }
+  .section-number::after {
+    content: '';
+    flex: 1;
+    max-width: 3rem;
+    height: 1px;
+    background: var(--accent-gold);
+    opacity: 0.5;
+  }
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--text-primary);
+  }
+  .section-title span {
+    display: block;
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(0.75rem, 1.2vw, 0.85rem);
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    font-weight: 400;
+  }
+  .section-lead {
+    margin-top: 1rem;
+    font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+    color: var(--text-secondary);
+    max-width: 680px;
+    line-height: 1.8;
+  }
+  /* ── KPI CARDS ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .kpi-card {
+    background: var(--bg-card);
+    padding: clamp(1.5rem, 3vw, 2.2rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: background 0.2s;
+  }
+  .kpi-card:hover { background: var(--bg-card-hover); }
+  .kpi-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-family: 'DM Serif Display', serif;
+  }
+  .kpi-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    line-height: 1;
+    color: var(--accent-gold-light);
+  }
+  .kpi-value sup {
+    font-size: 0.45em;
+    vertical-align: super;
+    color: var(--accent-gold);
+  }
+  .kpi-desc {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  /* ── PROFILE GRID ── */
+  .profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .profile-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: clamp(1.5rem, 2.5vw, 2rem);
+  }
+  .profile-card-title {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    font-family: 'DM Serif Display', serif;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .donut-wrap {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  .donut-wrap canvas { width: 110px !important; height: 110px !important; }
+  .donut-legend { display: flex; flex-direction: column; gap: 0.6rem; flex: 1; }
+  .legend-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.82rem;
+  }
+  .legend-left { display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .legend-pct { font-family: 'DM Serif Display', serif; color: var(--text-primary); font-size: 0.95rem; }
+  /* ── AGE BAR ── */
+  .age-bars { display: flex; flex-direction: column; gap: 0.8rem; }
+  .age-row { display: flex; align-items: center; gap: 0.8rem; }
+  .age-label { font-size: 0.75rem; color: var(--text-secondary); width: 5.5rem; flex-shrink: 0; }
+  .age-bar-wrap { flex: 1; height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+  .age-bar-fill { height: 100%; background: var(--accent-gold); border-radius: 3px; transition: width 1s ease; }
+  .age-pct { font-size: 0.75rem; color: var(--accent-gold-light); font-family: 'DM Serif Display', serif; width: 3.5rem; text-align: right; flex-shrink: 0; }
+  /* ── CHART WRAPPERS ── */
+  .chart-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: clamp(1.5rem, 3vw, 2.2rem);
+  }
+  .chart-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+  }
+  .chart-wrap { position: relative; }
+  /* ── INFO CHANNEL ── */
+  .channel-list { display: flex; flex-direction: column; gap: 1.1rem; }
+  .channel-row { display: flex; flex-direction: column; gap: 0.4rem; }
+  .channel-top { display: flex; justify-content: space-between; align-items: baseline; }
+  .channel-name { font-size: 0.88rem; color: var(--text-primary); }
+  .channel-count { font-family: 'DM Serif Display', serif; font-size: 1rem; color: var(--accent-gold-light); }
+  .channel-bar-wrap { height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+  .channel-bar-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light)); }
+  /* ── AWARENESS + INTENT ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+  .big-stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: clamp(1.8rem, 3vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.8rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .big-stat-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+  }
+  .big-stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 7vw, 4.5rem);
+    color: var(--accent-gold-light);
+    line-height: 1;
+  }
+  .big-stat-num sup { font-size: 0.4em; vertical-align: super; }
+  .big-stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-family: 'DM Serif Display', serif;
+  }
+  .big-stat-sub { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
+  /* ── VOICES ── */
+  .voices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.2rem;
+  }
+  .voice-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .voice-card:hover {
+    border-color: var(--border);
+    background: var(--bg-card-hover);
+  }
+  .voice-zh {
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+    font-family: 'Noto Serif JP', serif;
+  }
+  .voice-zh::before { content: '"'; color: var(--accent-gold); margin-right: 0.1em; }
+  .voice-zh::after  { content: '"'; color: var(--accent-gold); margin-left: 0.1em; }
+  .voice-ja {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-subtle);
+    padding: 3rem clamp(1.5rem, 6vw, 5rem);
+    text-align: center;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  .footer-brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    color: var(--accent-gold);
+    letter-spacing: 0.08em;
+  }
+  .footer-copy {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+  .footer-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 0.6rem 1.2rem;
+    transition: color 0.2s, border-color 0.2s;
+    font-family: 'DM Serif Display', serif;
+    letter-spacing: 0.1em;
+  }
+  .footer-back:hover { color: var(--accent-gold); border-color: var(--accent-gold); }
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+  .hero-eyebrow  { animation-delay: 0.2s; }
+  .hero-title    { animation-delay: 0.4s; }
+  .hero-subtitle { animation-delay: 0.55s; }
+  .hero-meta     { animation-delay: 0.7s; }
+  /* scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .profile-grid { grid-template-columns: 1fr; }
+    .donut-wrap { flex-direction: column; align-items: flex-start; }
+    .donut-wrap canvas { width: 100px !important; height: 100px !important; }
+  }
+  @media (max-width: 480px) {
+    .kpi-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<!-- ══════════════════════════════════════════════ HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Survey Analysis Report — 4th Edition</p>
+    <h1 class="hero-title">ATTA 台中国際旅展<br>来場者アンケート 分析レポート</h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">実施日</span>
+        <span class="hero-meta-value">2025.10.24 – 10.27</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">会場</span>
+        <span class="hero-meta-value">ATTA 台中国際旅展</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">有効回答数</span>
+        <span class="hero-meta-value">803件</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">対象</span>
+        <span class="hero-meta-value">中国語圏来場者</span>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ══════════════════════════════════════════════ TOC -->
+<nav class="toc">
+  <div class="toc-inner">
+    <a href="#kpi"      class="toc-link">01 サマリー</a>
+    <a href="#profile"  class="toc-link">02 回答者プロフィール</a>
+    <a href="#priority" class="toc-link">03 旅行決定の重視項目</a>
+    <a href="#interest" class="toc-link">04 米沢への興味体験</a>
+    <a href="#channel"  class="toc-link">05 情報収集チャネル</a>
+    <a href="#awareness" class="toc-link">06 認知・訪問意向</a>
+    <a href="#voices"   class="toc-link">07 来場者の声</a>
+  </div>
+</nav>
+<!-- ══════════════════════════════════════════════ 01 KPI -->
+<section class="section" id="kpi">
+  <div class="container">
+    <header class="section-header reveal">
+      <p class="section-number">01 / Summary</p>
+      <h2 class="section-title">
+        <span>Key Metrics</span>
+        主要指標 ─ 一目で分かる需要シグナル
+      </h2>
+      <p class="section-lead">4日間で803名の回答を収集。訪問意向率89.3%・米沢認知率55.9%と高水準を記録。グルメへの圧倒的な関心と、30〜40代ファミリー・カップル層の厚みが際立つ。</p>
+    </header>
+    <div class="kpi-grid reveal">
+      <div class="kpi-card">
+        <span class="kpi-label">有効回答数</span>
+        <div class="kpi-value">803<sup>件</sup></div>
+        <p class="kpi-desc">4日間（10/24〜10/27）の合計。最多は10/26の281件。</p>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">米沢市 訪問意向率</span>
+        <div class="kpi-value">89.3<sup>%</sup></div>
+        <p class="kpi-desc">「是（はい）」717件・「否（いいえ）」86件。</p>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">米沢市 認知率</span>
+        <div class="kpi-value">55.9<sup>%</sup></div>
+        <p class="kpi-desc">「是」449件・「否」354件。約4割超が今回のブースで初認知。</p>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">No.1 興味体験</span>
+        <div class="kpi-value" style="font-size:clamp(1.4rem,3vw,2rem);line-height:1.2;">グルメ</div>
+        <p class="kpi-desc">加重スコア1,458点。米沢牛・蕎麦が圧倒的首位。</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ══════════════════════════════════════════════ 02 PROFILE -->
+<section class="section" id="profile">
+  <div class="container">
+    <header class="section-header reveal">
+      <p class="section-number">02 / Profile</p>
+      <h2 class="section-title">
+        <span>Respondent Profile</span>
+        回答者プロフィール
+      </h2>
+      <p class="section-lead">第4回は性別・年齢層を設問に含む形式。30〜40代が約57%を占め、女性がやや多数。個人旅行（自由行）が約7割を構成する。</p>
+    </header>
+    <div class="profile-grid reveal">
+      <!-- 性別 -->
+      <div class="profile-card">
+        <p class="profile-card-title">性別 / Gender</p>
+        <div class="donut-wrap">
+          <canvas id="genderChart"></canvas>
+          <div class="donut-legend">
+            <div class="legend-row">
+              <div class="legend-left"><span class="legend-dot" style="background:#e8c547"></span>女性</div>
+              <span class="legend-pct">61.8%</span>
+            </div>
+            <div class="legend-row">
+              <div class="legend-left"><span class="legend-dot" style="background:#3a5a8c"></span>男性</div>
+              <span class="legend-pct">38.2%</span>
+            </div>
+            <div style="margin-top:0.5rem;font-size:0.7rem;color:var(--text-muted);">女性 496 / 男性 307</div>
+          </div>
+        </div>
+      </div>
+      <!-- 旅行スタイル -->
+      <div class="profile-card">
+        <p class="profile-card-title">旅行スタイル / Travel Style</p>
+        <div class="donut-wrap">
+          <canvas id="styleChart"></canvas>
+          <div class="donut-legend">
+            <div class="legend-row">
+              <div class="legend-left"><span class="legend-dot" style="background:#e8c547"></span>自由行（個人）</div>
+              <span class="legend-pct">71.1%</span>
+            </div>
+            <div class="legend-row">
+              <div class="legend-left"><span class="legend-dot" style="background:#3a5a8c"></span>旅行団（ツアー）</div>
+              <span class="legend-pct">28.9%</span>
+            </div>
+            <div style="margin-top:0.5rem;font-size:0.7rem;color:var(--text-muted);">自由行 571 / 旅行団 232</div>
+          </div>
+        </div>
+      </div>
+      <!-- 年齢層 -->
+      <div class="profile-card" style="grid-column: 1 / -1;">
+        <p class="profile-card-title">年齢層 / Age Group</p>
+        <div class="age-bars" id="ageBars">
+          <div class="age-row"><span class="age-label">10-20歳</span><div class="age-bar-wrap"><div class="age-bar-fill" style="width:0%" data-width="5.4%"></div></div><span class="age-pct">5.4%</span></div>
+          <div class="age-row"><span class="age-label">20-30歳</span><div class="age-bar-wrap"><div class="age-bar-fill" style="width:0%" data-width="12.2%"></div></div><span class="age-pct">12.2%</span></div>
+          <div class="age-row"><span class="age-label">30-40歳</span><div class="age-bar-wrap"><div class="age-bar-fill" style="width:0%" data-width="28.4%"></div></div><span class="age-pct">28.4%</span></div>
+          <div class="age-row"><span class="age-label">40-50歳</span><div class="age-bar-wrap"><div class="age-bar-fill" style="width:0%" data-width="28.4%"></div></div><span class="age-pct">28.4%</span></div>
+          <div class="age-row"><span class="age-label">50-60歳</span><div class="age-bar-wrap"><div class="age-bar-fill" style="width:0%" data-width="16.9%"></div></div><span class="age-pct">16.9%</span></div>
+          <div class="age-row"><span class="age-label">60歳以上</span><div class="age-bar-wrap"><div class="age-bar-fill" style="width:0%" data-width="8.7%"></div></div><span class="age-pct">8.7%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ══════════════════════════════════════════════ 03 PRIORITY -->
+<section class="section" id="priority">
+  <div class="container">
+    <header class="section-header reveal">
+      <p class="section-number">03 / Decision Factors</p>
+      <h2 class="section-title">
+        <span>Travel Decision Priorities</span>
+        旅行先決定の重視項目
+      </h2>
+      <p class="section-lead">1位=3点・2位=2点・3位=1点の加重集計。「旅程内容（行程）」が圧倒的首位で、費用・交通アクセスが続く。コンテンツの魅力と価格・アクセスの三拍子が鍵。</p>
+    </header>
+    <div class="chart-card reveal">
+      <p class="chart-title">旅行決定の重視項目（加重スコア）</p>
+      <div class="chart-wrap" style="height:380px;">
+        <canvas id="priorityChart"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ══════════════════════════════════════════════ 04 INTEREST -->
+<section class="section" id="interest">
+  <div class="container">
+    <header class="section-header reveal">
+      <p class="section-number">04 / Experience Interest</p>
+      <h2 class="section-title">
+        <span>Yonezawa Experience Ranking</span>
+        米沢市で興味のある体験
+      </h2>
+      <p class="section-lead">1位=3点・2位=2点・3位=1点の加重集計。「グルメ（米沢牛・蕎麦）」が1,458点と2位の倍以上を獲得。桜・紅葉・温泉・樹氷と四季の体験が均衡して続く。</p>
+    </header>
+    <div class="chart-card reveal">
+      <p class="chart-title">米沢で興味のある体験（加重スコア）</p>
+      <div class="chart-wrap" style="height:340px;">
+        <canvas id="interestChart"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ══════════════════════════════════════════════ 05 CHANNEL -->
+<section class="section" id="channel">
+  <div class="container">
+    <header class="section-header reveal">
+      <p class="section-number">05 / Information Channel</p>
+      <h2 class="section-title">
+        <span>How Travelers Discover Japan</span>
+        情報収集チャネル
+      </h2>
+      <p class="section-lead">ネット（ブログ・ニュース等）が290件で首位、展覧会がほぼ同数の276件で続く。SNS・YouTube・テレビの順。ウェブコンテンツとリアル接点の両輪が依然有効。</p>
+    </header>
+    <div class="chart-card reveal">
+      <p class="chart-title">情報収集チャネル（件数）</p>
+      <div class="channel-list">
+        <div class="channel-row">
+          <div class="channel-top"><span class="channel-name">ネット（ブログ・ニュース等）</span><span class="channel-count">290件</span></div>
+          <div class="channel-bar-wrap"><div class="channel-bar-fill" style="width:100%"></div></div>
+        </div>
+        <div class="channel-row">
+          <div class="channel-top"><span class="channel-name">展覧会（旅展）</span><span class="channel-count">276件</span></div>
+          <div class="channel-bar-wrap"><div class="channel-bar-fill" style="width:95.2%"></div></div>
+        </div>
+        <div class="channel-row">
+          <div class="channel-top"><span class="channel-name">SNS（FB・Instagram・LINE等）</span><span class="channel-count">104件</span></div>
+          <div class="channel-bar-wrap"><div class="channel-bar-fill" style="width:35.9%"></div></div>
+        </div>
+        <div class="channel-row">
+          <div class="channel-top"><span class="channel-name">YouTube</span><span class="channel-count">76件</span></div>
+          <div class="channel-bar-wrap"><div class="channel-bar-fill" style="width:26.2%"></div></div>
+        </div>
+        <div class="channel-row">
+          <div class="channel-top"><span class="channel-name">テレビ（ニュース・番組等）</span><span class="channel-count">57件</span></div>
+          <div class="channel-bar-wrap"><div class="channel-bar-fill" style="width:19.7%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ══════════════════════════════════════════════ 06 AWARENESS -->
+<section class="section" id="awareness">
+  <div class="container">
+    <header class="section-header reveal">
+      <p class="section-number">06 / Awareness &amp; Intent</p>
+      <h2 class="section-title">
+        <span>Brand Awareness &amp; Visit Intention</span>
+        米沢認知度・訪問意向
+      </h2>
+      <p class="section-lead">ブース来場者のうち半数強（55.9%）が米沢を事前に認知。訪問意向「是」は89.3%と非常に高く、認知済み・未認知問わず強い訪日動機が確認できる。</p>
+    </header>
+    <div class="two-col reveal">
+      <div class="big-stat-card">
+        <span class="big-stat-label">米沢市 認知率</span>
+        <div class="big-stat-num">55.9<sup>%</sup></div>
+        <p class="big-stat-sub">是 449件 / 否 354件<br>約4割が今回で初めて米沢を知った</p>
+      </div>
+      <div class="big-stat-card">
+        <span class="big-stat-label">米沢市 訪問意向率</span>
+        <div class="big-stat-num">89.3<sup>%</sup></div>
+        <p class="big-stat-sub">是 717件 / 否 86件<br>未認知層を含めても高い訪問転換率</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ══════════════════════════════════════════════ 07 VOICES -->
+<section class="section" id="voices">
+  <div class="container">
+    <header class="section-header reveal">
+      <p class="section-number">07 / Visitor Voices</p>
+      <h2 class="section-title">
+        <span>Free-text Highlights</span>
+        来場者の声
+      </h2>
+      <p class="section-lead">「日本でしたいこと・見たいもの」自由記述より抜粋。温泉・グルメ・歴史・自然体験への複合的な期待が読み取れる。</p>
+    </header>
+    <div class="voices-grid reveal">
+      <div class="voice-card">
+        <p class="voice-zh">最喜歡泡溫泉賞櫻賞楓看雪</p>
+        <p class="voice-ja">温泉・お花見・紅葉狩り・雪景色がいちばん好き</p>
+      </div>
+      <div class="voice-card">
+        <p class="voice-zh">吃美食、購物、逛神社、扭蛋</p>
+        <p class="voice-ja">グルメ、ショッピング、神社参拝、ガチャガチャ</p>
+      </div>
+      <div class="voice-card">
+        <p class="voice-zh">像日本人一樣逛在地的店家</p>
+        <p class="voice-ja">日本人のように地元のお店を歩き回りたい</p>
+      </div>
+      <div class="voice-card">
+        <p class="voice-zh">親近台灣看不到的大自然</p>
+        <p class="voice-ja">台湾では見られない大自然に触れたい</p>
+      </div>
+      <div class="voice-card">
+        <p class="voice-zh">拜見直江兼続的墓和米澤城</p>
+        <p class="voice-ja">直江兼続のお墓と米沢城址を訪れたい</p>
+      </div>
+      <div class="voice-card">
+        <p class="voice-zh">想去神社收集御朱印</p>
+        <p class="voice-ja">神社で御朱印を集めたい</p>
+      </div>
+      <div class="voice-card">
+        <p class="voice-zh">玩雪、泡湯、購物</p>
+        <p class="voice-ja">雪遊び・温泉・ショッピング</p>
+      </div>
+      <div class="voice-card">
+        <p class="voice-zh">好好渡假看風景享受人文氣息</p>
+        <p class="voice-ja">ゆっくり景色を楽しみ、文化の薫りに浸りたい</p>
+      </div>
+      <div class="voice-card">
+        <p class="voice-zh">看日本自然風景和歷史建築</p>
+        <p class="voice-ja">日本の自然の風景と歴史的建築を見たい</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ══════════════════════════════════════════════ FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="https://platkokoro.github.io/atta-taichung-2026/" class="footer-back">
+      ← アーカイブ一覧へ戻る
+    </a>
+    <p class="footer-brand">プラットヨネザワ株式会社</p>
+    <p class="footer-copy">Copyright © 2025 プラットヨネザワ株式会社　本レポートはAIによる自動分析を含みます</p>
+  </div>
+</footer>
+<script>
+// ── Chart.js グローバル設定
+Chart.defaults.color = '#a09080';
+Chart.defaults.font.family = "'DM Serif Display', serif";
+// ── ドーナツチャート（性別）
+new Chart(document.getElementById('genderChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['女性', '男性'],
+    datasets: [{
+      data: [496, 307],
+      backgroundColor: ['#e8c547', '#3a5a8c'],
+      borderWidth: 0,
+      hoverOffset: 4
+    }]
+  },
+  options: {
+    cutout: '68%',
+    plugins: { legend: { display: false }, tooltip: {
+      callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed}件` }
+    }}
+  }
+});
+// ── ドーナツチャート（旅行スタイル）
+new Chart(document.getElementById('styleChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['自由行', '旅行団'],
+    datasets: [{
+      data: [571, 232],
+      backgroundColor: ['#e8c547', '#3a5a8c'],
+      borderWidth: 0,
+      hoverOffset: 4
+    }]
+  },
+  options: {
+    cutout: '68%',
+    plugins: { legend: { display: false }, tooltip: {
+      callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed}件` }
+    }}
+  }
+});
+// ── 旅行重視項目 横棒グラフ
+const priorityLabels = [
+  '旅程内容', '費用', '交通アクセス', 'ホテル品質',
+  'グルメ', '有名スポット', '家族同楽', 'リゾート感',
+  '歴史文化', '季節変化', '観光客の少なさ', 'フォトジェニック'
+];
+const priorityScores = [1339, 970, 621, 439, 294, 273, 242, 201, 193, 110, 100, 36];
+new Chart(document.getElementById('priorityChart'), {
+  type: 'bar',
+  data: {
+    labels: priorityLabels,
+    datasets: [{
+      label: '加重スコア',
+      data: priorityScores,
+      backgroundColor: priorityScores.map((_, i) =>
+        i === 0 ? '#e8c547' : i === 1 ? '#c9a227' : 'rgba(201,162,39,0.35)'
+      ),
+      borderRadius: 2,
+      borderSkipped: false
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: { label: ctx => ` スコア: ${ctx.parsed.x.toLocaleString()}` }
+      }
+    },
+    scales: {
+      x: {
+        grid: { color: 'rgba(255,255,255,0.04)' },
+        ticks: { color: '#6a5a50', font: { size: 11 } }
+      },
+      y: {
+        grid: { display: false },
+        ticks: { color: '#a09080', font: { size: 12 } }
+      }
+    }
+  }
+});
+// ── 米沢体験興味 横棒グラフ
+const interestLabels = [
+  'グルメ（米沢牛・蕎麦）',
+  '桜・紅葉',
+  '温泉',
+  '樹氷・スキー',
+  '歴史・文化体験',
+  '購物',
+  '日本酒・焼酎',
+  '伝統工芸体験'
+];
+const interestScores = [1458, 701, 644, 584, 542, 495, 249, 145];
+new Chart(document.getElementById('interestChart'), {
+  type: 'bar',
+  data: {
+    labels: interestLabels,
+    datasets: [{
+      label: '加重スコア',
+      data: interestScores,
+      backgroundColor: interestScores.map((_, i) =>
+        i === 0 ? '#e8c547' : i <= 2 ? '#c9a227' : 'rgba(201,162,39,0.35)'
+      ),
+      borderRadius: 2,
+      borderSkipped: false
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: { label: ctx => ` スコア: ${ctx.parsed.x.toLocaleString()}` }
+      }
+    },
+    scales: {
+      x: {
+        grid: { color: 'rgba(255,255,255,0.04)' },
+        ticks: { color: '#6a5a50', font: { size: 11 } }
+      },
+      y: {
+        grid: { display: false },
+        ticks: { color: '#a09080', font: { size: 12 } }
+      }
+    }
+  }
+});
+// ── 年齢バー アニメーション
+function animateAgeBars() {
+  document.querySelectorAll('.age-bar-fill').forEach(bar => {
+    const target = bar.dataset.width;
+    bar.style.width = target;
+  });
+}
+// ── スクロールリビール
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      if (entry.target.querySelector('.age-bar-fill')) {
+        setTimeout(animateAgeBars, 300);
+      }
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
