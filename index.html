@@ -7,536 +7,554 @@
 <meta name="description" content="プラットヨネザワ株式会社が台湾ATTA台中国際旅展で実施してきた来場者アンケートの分析レポート アーカイブ">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;700&family=Noto+Sans+JP:wght@200;300;400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#0a1628;
-  --navy-2:#142442;
-  --gold:#c9a227;
-  --gold-soft:#e0bf4c;
-  --gold-dim:#8a6f1c;
-  --text:#f0f0f0;
-  --muted:#9fb0c8;
-  --line:rgba(201,162,39,.25);
+  --bg:#ffffff;
+  --bg-soft:#fafafa;
+  --bg-line:#eeeeee;
+  --ink:#0d0d0d;
+  --ink-2:#3a3a3a;
+  --muted:#888888;
+  --hair:#e5e5e5;
+  --accent:#0a1628; /* keep brand navy as single accent */
+  --accent-2:#c9a227; /* gold reserved for status badges only */
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{
-  background:var(--navy);
-  color:var(--text);
-  font-family:'Noto Sans JP',sans-serif;
-  line-height:1.7;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Noto Sans JP','Inter',sans-serif;
+  font-weight:300;
+  line-height:1.75;
   -webkit-font-smoothing:antialiased;
   min-height:100vh;
+  letter-spacing:.01em;
 }
 body{overflow-x:hidden}
-h1,h2,h3{font-family:'Noto Serif JP',serif;font-weight:700;letter-spacing:.02em;line-height:1.3}
+img{display:block;max-width:100%}
 
-.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+/* ===== Global container ===== */
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+
+/* ===== Top utility bar ===== */
+.utility{
+  border-bottom:1px solid var(--hair);
+  padding:14px 0;
+  font-size:11px;
+  letter-spacing:.18em;
+}
+.utility .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.utility .brand{
+  font-family:'Inter',sans-serif;
+  font-weight:500;
+  color:var(--ink);
+  text-transform:uppercase;
+}
+.utility .meta{color:var(--muted);text-transform:uppercase;font-family:'Inter',sans-serif}
 
 /* ===== Hero ===== */
 .hero{
-  position:relative;
-  padding:96px 0 72px;
-  background:
-    radial-gradient(900px 500px at 85% -10%,rgba(201,162,39,.18),transparent 60%),
-    radial-gradient(700px 400px at 10% 110%,rgba(201,162,39,.10),transparent 60%),
-    linear-gradient(180deg,#0a1628 0%,#0d1b35 100%);
-  overflow:hidden;
+  padding:140px 0 120px;
+  border-bottom:1px solid var(--hair);
 }
-.hero::before{
-  content:"";position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(201,162,39,.06) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(201,162,39,.06) 1px,transparent 1px);
-  background-size:60px 60px;
-  pointer-events:none;
-  mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
-  -webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
-}
-.hero .mt{
-  display:inline-block;
-  font-family:'DM Serif Display',serif;
-  color:var(--gold-soft);
-  font-size:13px;
-  letter-spacing:.4em;
+.hero .eyebrow{
+  font-family:'Inter',sans-serif;
+  font-size:12px;
+  letter-spacing:.32em;
+  color:var(--muted);
   text-transform:uppercase;
-  border:1px solid rgba(201,162,39,.45);
-  padding:6px 16px;
-  border-radius:999px;
-  background:rgba(201,162,39,.06);
-  margin-bottom:26px;
+  margin-bottom:48px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.hero .eyebrow::before{
+  content:"";
+  display:block;
+  width:42px;
+  height:1px;
+  background:var(--ink);
 }
 .hero h1{
-  font-size:clamp(30px,4.6vw,52px);
-  color:#fff;
+  font-family:'Noto Sans JP',sans-serif;
+  font-weight:200;
+  font-size:clamp(40px,6vw,84px);
+  line-height:1.12;
+  letter-spacing:-.01em;
+  color:var(--ink);
+  margin-bottom:32px;
+}
+.hero h1 .small{display:block;font-size:.45em;color:var(--ink-2);margin-bottom:14px;font-weight:300;letter-spacing:.02em}
+.hero .lead{
+  max-width:640px;
+  color:var(--ink-2);
+  font-size:15.5px;
+  font-weight:300;
+  line-height:1.95;
+  margin-bottom:64px;
+}
+.hero .meta-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  border-top:1px solid var(--hair);
+  padding-top:32px;
+}
+.hero .meta-item{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  padding-right:24px;
+}
+.hero .meta-item .l{
+  font-family:'Inter',sans-serif;
+  font-size:10.5px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.hero .meta-item .v{
+  font-size:14px;
+  color:var(--ink);
+  font-weight:400;
+}
+@media(max-width:760px){
+  .hero{padding:80px 0 60px}
+  .hero .meta-grid{grid-template-columns:repeat(2,1fr);gap:24px}
+}
+
+/* ===== Section header (reused) ===== */
+.section{padding:120px 0;border-bottom:1px solid var(--hair)}
+.section-head{
+  display:grid;
+  grid-template-columns:240px 1fr;
+  gap:48px;
+  margin-bottom:72px;
+}
+.section-head .label{
+  font-family:'Inter',sans-serif;
+  font-size:11px;
+  letter-spacing:.28em;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+.section-head .label .num{display:block;color:var(--ink);font-size:14px;margin-bottom:6px;letter-spacing:.18em}
+.section-head h2{
+  font-family:'Noto Sans JP',sans-serif;
+  font-weight:300;
+  font-size:clamp(28px,3.4vw,42px);
+  line-height:1.3;
+  color:var(--ink);
+  letter-spacing:-.005em;
+}
+.section-head h2 .en{
+  display:block;
+  font-family:'Inter',sans-serif;
+  font-weight:400;
+  font-size:12px;
+  letter-spacing:.28em;
+  color:var(--muted);
+  text-transform:uppercase;
   margin-bottom:14px;
 }
-.hero h1 .accent{color:var(--gold-soft)}
-.hero .sub-en{
-  font-family:'DM Serif Display',serif;
-  color:#cdd6e3;
-  font-size:clamp(15px,1.5vw,20px);
-  margin-bottom:22px;
-  letter-spacing:.02em;
-}
-.hero .lead{
-  color:#cdd6e3;
-  font-size:clamp(14px,1.3vw,16px);
-  max-width:760px;
-}
-.hero-meta{
-  margin-top:38px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:18px 36px;
-  font-size:13px;
-  color:var(--muted);
-}
-.hero-meta .item .l{
-  font-size:11px;
-  letter-spacing:.3em;
-  color:var(--gold-soft);
-  text-transform:uppercase;
-  display:block;
-  margin-bottom:4px;
-}
-.hero-meta .item .v{
-  font-family:'DM Serif Display',serif;
-  color:#fff;
-  font-size:18px;
-}
-
-/* ===== Section heading ===== */
-.section{padding:60px 0 80px}
-.section-head{margin-bottom:36px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.section-head .num{font-family:'DM Serif Display',serif;color:var(--gold);font-size:13px;letter-spacing:.4em}
-.section-head h2{font-size:clamp(22px,2.8vw,30px);color:#fff;margin-top:6px}
-.section-head .right{
-  font-size:12px;
-  color:var(--muted);
-  font-family:'DM Serif Display',serif;
-  letter-spacing:.2em;
-}
-
-/* ===== Card grid ===== */
-.cards{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:28px;
-}
-@media(max-width:760px){.cards{grid-template-columns:1fr;gap:22px}}
-
-.card{
-  position:relative;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(201,162,39,.3);
-  border-radius:12px;
-  overflow:hidden;
-  text-decoration:none;
-  color:inherit;
-  display:flex;
-  flex-direction:column;
-  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
-}
-.card:hover{
-  transform:translateY(-4px);
-  border-color:rgba(201,162,39,.7);
-  box-shadow:0 18px 44px -22px rgba(201,162,39,.4),0 8px 24px -10px rgba(0,0,0,.5);
-}
-.card.disabled{cursor:default}
-.card.disabled:hover{transform:none;border-color:rgba(201,162,39,.3);box-shadow:none}
-
-.card .img-wrap{
-  position:relative;
-  width:100%;
-  aspect-ratio:16/9;
-  background:
-    linear-gradient(135deg,#142442 0%,#1d3158 50%,#0d1b35 100%);
-  overflow:hidden;
-}
-.card .img-wrap::after{
-  content:"";
-  position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(10,22,40,0) 50%,rgba(10,22,40,.55) 100%);
-  pointer-events:none;
-}
-.card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-  filter:saturate(1.05);
-}
-.card.no-image .img-wrap::before{
-  content:"";
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(201,162,39,.10) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(201,162,39,.10) 1px,transparent 1px);
-  background-size:32px 32px;
-  mask-image:radial-gradient(ellipse at center,black 20%,transparent 75%);
-  -webkit-mask-image:radial-gradient(ellipse at center,black 20%,transparent 75%);
-}
-.card.no-image .img-wrap span.placeholder{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:'DM Serif Display',serif;
-  font-size:42px;
-  color:rgba(201,162,39,.4);
-  letter-spacing:.1em;
-}
-
-/* round badge */
-.round-badge{
-  position:absolute;
-  top:14px;
-  left:14px;
-  z-index:2;
-  font-family:'Noto Serif JP',serif;
-  font-weight:700;
-  background:rgba(10,22,40,.78);
-  color:var(--gold-soft);
-  border:1px solid rgba(201,162,39,.5);
-  padding:5px 12px;
-  border-radius:999px;
-  font-size:12px;
-  letter-spacing:.05em;
-  backdrop-filter:blur(6px);
-  -webkit-backdrop-filter:blur(6px);
-}
-
-/* status badge */
-.status-badge{
-  position:absolute;
-  top:14px;
-  right:14px;
-  z-index:2;
-  font-size:10px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  padding:5px 11px;
-  border-radius:999px;
-  font-weight:600;
-  backdrop-filter:blur(6px);
-  -webkit-backdrop-filter:blur(6px);
-}
-.status-badge.live{
-  background:rgba(201,162,39,.95);
-  color:#0a1628;
-}
-.status-badge.coming{
-  background:rgba(255,255,255,.12);
-  color:#cdd6e3;
-  border:1px solid rgba(255,255,255,.25);
-}
-
-/* card body */
-.card .body{
-  padding:22px 24px 26px;
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-.card .period{
-  font-family:'DM Serif Display',serif;
-  color:var(--gold-soft);
-  font-size:14px;
-  letter-spacing:.04em;
-}
-.card .title{
-  font-family:'Noto Serif JP',serif;
-  color:#fff;
-  font-size:21px;
-  font-weight:700;
-  line-height:1.4;
-  margin-top:2px;
-}
-.card .venue{
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:6px;
-}
-.card .cta-row{
-  margin-top:auto;
-  padding-top:14px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-}
-.card .cta{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  font-family:'DM Serif Display',serif;
-  font-size:13px;
-  letter-spacing:.18em;
-  color:var(--gold-soft);
-  text-transform:uppercase;
-}
-.card .cta .arrow{
-  display:inline-block;
-  transition:transform .2s ease;
-}
-.card:hover .cta .arrow{transform:translateX(6px)}
-.card.disabled .cta{color:rgba(255,255,255,.35)}
-.card.disabled .cta .arrow{display:none}
-.card .meta-tag{
-  font-size:11px;
-  letter-spacing:.2em;
-  color:var(--muted);
-  text-transform:uppercase;
-  font-family:'DM Serif Display',serif;
-}
-
-/* ===== Footer ===== */
-footer{
-  border-top:1px solid var(--line);
-  padding:38px 0 50px;
-  background:#08111e;
-  text-align:center;
-}
-footer .brand{
-  font-family:'Noto Serif JP',serif;
-  font-size:15px;
-  color:var(--gold-soft);
-  margin-bottom:6px;
-}
-footer .copy{
-  font-size:12px;
-  color:var(--muted);
-  letter-spacing:.04em;
-}
-footer .note{
-  margin-top:10px;
-  font-size:11px;
-  color:rgba(159,176,200,.65);
-  letter-spacing:.06em;
-}
-
-/* anim */
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.section .cards > *{animation:fadeIn .55s ease-out both}
-.section .cards > *:nth-child(1){animation-delay:.04s}
-.section .cards > *:nth-child(2){animation-delay:.10s}
-.section .cards > *:nth-child(3){animation-delay:.16s}
-.section .cards > *:nth-child(4){animation-delay:.22s}
-.section .cards > *:nth-child(5){animation-delay:.28s}
-
-/* ===== Trend (Round-over-Round comparison) ===== */
-.trend{
-  padding:64px 0 40px;
-  background:linear-gradient(180deg,#0a1628 0%,#0c1a30 100%);
-  border-bottom:1px solid var(--line);
-}
-.trend .section-head{margin-bottom:28px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.trend .section-head .num{font-family:'DM Serif Display',serif;color:var(--gold);font-size:13px;letter-spacing:.4em}
-.trend .section-head h2{font-size:clamp(22px,2.8vw,30px);color:#fff;margin-top:6px}
-.trend .section-head .right{font-family:'DM Serif Display',serif;color:var(--muted);font-size:13px;letter-spacing:.2em}
-.trend .lead{
-  color:var(--muted);
-  max-width:760px;
+.section-head .sub{
+  margin-top:20px;
+  color:var(--ink-2);
   font-size:14.5px;
-  margin-bottom:28px;
+  max-width:680px;
 }
-.trend-table-wrap{
-  overflow-x:auto;
-  border:1px solid var(--line);
-  border-radius:8px;
-  background:rgba(255,255,255,.015);
+@media(max-width:760px){
+  .section{padding:72px 0}
+  .section-head{grid-template-columns:1fr;gap:14px;margin-bottom:40px}
 }
+
+/* ===== Trend table ===== */
 .trend-table{
   width:100%;
   border-collapse:collapse;
-  min-width:680px;
-  font-size:14.5px;
-}
-.trend-table th,.trend-table td{
-  padding:14px 18px;
-  text-align:left;
-  border-bottom:1px solid rgba(201,162,39,.10);
+  font-size:14px;
 }
 .trend-table thead th{
-  background:rgba(201,162,39,.06);
-  color:var(--gold-soft);
-  font-family:'DM Serif Display',serif;
-  font-weight:400;
-  font-size:12.5px;
-  letter-spacing:.18em;
+  text-align:left;
+  font-family:'Inter',sans-serif;
+  font-weight:500;
+  font-size:10.5px;
+  letter-spacing:.22em;
   text-transform:uppercase;
-  border-bottom:1px solid var(--line);
+  color:var(--muted);
+  padding:14px 20px 14px 0;
+  border-bottom:1px solid var(--ink);
   white-space:nowrap;
 }
+.trend-table thead th.right{text-align:right}
+.trend-table tbody td{
+  padding:24px 20px 24px 0;
+  border-bottom:1px solid var(--hair);
+  vertical-align:middle;
+  color:var(--ink);
+  font-weight:400;
+}
+.trend-table tbody td.right{text-align:right}
 .trend-table tbody tr{transition:background .15s}
-.trend-table tbody tr:hover{background:rgba(201,162,39,.04)}
-.trend-table tbody tr:last-child td{border-bottom:none}
-.trend-table .round-cell{
-  font-family:'Noto Serif JP',serif;
-  font-weight:700;
-  color:#fff;
+.trend-table tbody tr:hover{background:var(--bg-soft)}
+.trend-table .round{
+  font-weight:500;
+  color:var(--ink);
   white-space:nowrap;
+  font-size:15px;
 }
-.trend-table .round-cell .badge{
+.trend-table .round .badge{
   display:inline-block;
-  font-family:'DM Serif Display',serif;
-  background:var(--gold);
-  color:var(--navy);
-  font-size:11px;
-  padding:2px 8px;
-  border-radius:4px;
-  margin-right:8px;
-  letter-spacing:.06em;
+  font-family:'Inter',sans-serif;
+  font-weight:500;
+  font-size:10px;
+  letter-spacing:.16em;
+  background:var(--ink);
+  color:#fff;
+  padding:3px 9px;
+  margin-right:12px;
+  border-radius:2px;
   vertical-align:middle;
 }
-.trend-table .date-cell{
-  font-family:'DM Serif Display',serif;
+.trend-table .date{
+  font-family:'Inter',sans-serif;
   color:var(--muted);
+  font-size:13px;
+  letter-spacing:.06em;
   white-space:nowrap;
 }
-.trend-table .num-cell{
-  font-family:'DM Serif Display',serif;
-  color:var(--gold-soft);
-  font-size:16px;
-  text-align:right;
+.trend-table .num{
+  font-family:'Inter',sans-serif;
+  font-weight:400;
+  color:var(--ink);
+  font-size:18px;
+  letter-spacing:-.005em;
   white-space:nowrap;
 }
-.trend-table .num-cell sup{
-  font-size:.7em;
-  color:var(--gold);
+.trend-table .num sup{
+  font-family:'Noto Sans JP',sans-serif;
+  font-size:.55em;
+  color:var(--muted);
+  font-weight:400;
+  margin-left:2px;
   vertical-align:super;
-  margin-left:1px;
 }
-.trend-table .top-cell{
-  color:#e8d9b0;
-  white-space:nowrap;
-}
-.trend-table tr.coming td{
-  color:var(--muted);
-  opacity:.55;
-}
-.trend-table tr.coming .round-cell{color:var(--muted);font-weight:400}
-.trend-table tr.coming .round-cell .badge{background:rgba(159,176,200,.15);color:var(--muted)}
-.trend-table .dash{color:var(--muted);opacity:.6}
-.trend-table a.report-link{
-  color:var(--gold-soft);
+.trend-table .top{color:var(--ink);white-space:nowrap;font-size:14px}
+.trend-table .arrow{
+  font-family:'Inter',sans-serif;
+  color:var(--ink);
   text-decoration:none;
-  font-family:'DM Serif Display',serif;
   font-size:12px;
-  letter-spacing:.1em;
-  border-bottom:1px solid rgba(224,191,76,.3);
-  padding-bottom:1px;
-  transition:color .2s,border-color .2s;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  border-bottom:1px solid var(--ink);
+  padding-bottom:2px;
+  transition:opacity .2s;
   white-space:nowrap;
 }
-.trend-table a.report-link:hover{
-  color:#fff;
-  border-bottom-color:#fff;
-}
+.trend-table .arrow:hover{opacity:.5}
+.trend-table tr.coming td{color:var(--muted)}
+.trend-table tr.coming .round{color:var(--muted);font-weight:400}
+.trend-table tr.coming .round .badge{background:var(--hair);color:var(--muted)}
+.trend-table .dash{color:var(--hair)}
 .trend-footnote{
-  margin-top:14px;
-  font-size:12px;
+  margin-top:24px;
+  font-size:11.5px;
   color:var(--muted);
-  line-height:1.7;
-  padding-left:10px;
-  border-left:2px solid var(--line);
+  letter-spacing:.04em;
 }
-.trend-footnote .star{color:var(--gold-soft);font-weight:700;margin-right:3px}
+.trend-footnote .star{color:var(--ink);font-weight:500;margin-right:2px}
+.table-scroll{overflow-x:auto;margin:0 -32px;padding:0 32px}
 @media(max-width:760px){
-  .trend{padding:48px 0 32px}
-  .trend-table th,.trend-table td{padding:12px 14px;font-size:13.5px}
-  .trend-table .num-cell{font-size:14.5px}
+  .trend-table{min-width:680px}
 }
+
+/* ===== Cards ===== */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:64px 48px;
+}
+@media(max-width:760px){.cards{grid-template-columns:1fr;gap:48px}}
+
+.card{
+  display:flex;
+  flex-direction:column;
+  text-decoration:none;
+  color:var(--ink);
+  transition:transform .35s ease;
+}
+.card:hover{transform:translateY(-4px)}
+.card.disabled{pointer-events:none;opacity:.45}
+
+.card .img-wrap{
+  position:relative;
+  aspect-ratio:16/10;
+  background:var(--bg-soft);
+  overflow:hidden;
+  margin-bottom:28px;
+}
+.card .img-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .8s ease;
+}
+.card:hover .img-wrap img{transform:scale(1.04)}
+.card.no-image .img-wrap{
+  background:repeating-linear-gradient(135deg,var(--bg-soft) 0,var(--bg-soft) 12px,#f3f3f3 12px,#f3f3f3 24px);
+}
+.card.no-image .img-wrap img{display:none}
+.card .badge-row{
+  position:absolute;
+  top:18px;left:18px;
+  display:flex;gap:8px;
+  z-index:2;
+}
+.card .badge-round{
+  background:#fff;
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  font-weight:500;
+  font-size:10.5px;
+  letter-spacing:.16em;
+  padding:5px 11px;
+  border-radius:2px;
+}
+.card .badge-status{
+  font-family:'Inter',sans-serif;
+  font-weight:500;
+  font-size:10.5px;
+  letter-spacing:.16em;
+  padding:5px 11px;
+  border-radius:2px;
+  text-transform:uppercase;
+}
+.card .badge-status.live{background:var(--ink);color:#fff}
+.card .badge-status.coming{background:#fff;color:var(--muted);border:1px solid var(--hair)}
+
+.card .body{display:flex;flex-direction:column;gap:10px}
+.card .period{
+  font-family:'Inter',sans-serif;
+  font-size:11.5px;
+  letter-spacing:.2em;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+.card .title{
+  font-family:'Noto Sans JP',sans-serif;
+  font-weight:500;
+  font-size:22px;
+  line-height:1.4;
+  color:var(--ink);
+  letter-spacing:-.005em;
+}
+.card .venue{
+  font-size:13px;
+  color:var(--ink-2);
+  font-weight:300;
+}
+.card .cta-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px solid var(--hair);
+}
+.card .cta{
+  font-family:'Inter',sans-serif;
+  font-size:12px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--ink);
+  display:flex;align-items:center;gap:10px;
+}
+.card .cta .arrow{
+  display:inline-block;
+  width:18px;
+  border-top:1px solid var(--ink);
+  position:relative;
+  transition:width .3s;
+}
+.card:hover .cta .arrow{width:28px}
+.card .meta-tag{
+  font-family:'Inter',sans-serif;
+  font-size:10.5px;
+  letter-spacing:.22em;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+.card.disabled .cta{color:var(--muted)}
+.card.disabled .cta .arrow{border-top-color:var(--muted)}
+
+/* ===== Footer ===== */
+.foot{
+  padding:80px 0 60px;
+  background:var(--bg);
+}
+.foot .row{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:32px;
+  flex-wrap:wrap;
+  padding-bottom:32px;
+  border-bottom:1px solid var(--hair);
+  margin-bottom:32px;
+}
+.foot .brand{
+  font-family:'Noto Sans JP',sans-serif;
+  font-weight:500;
+  font-size:15px;
+  color:var(--ink);
+}
+.foot .brand .en{
+  display:block;
+  font-family:'Inter',sans-serif;
+  font-weight:400;
+  font-size:11px;
+  letter-spacing:.22em;
+  color:var(--muted);
+  text-transform:uppercase;
+  margin-top:6px;
+}
+.foot .links{display:flex;gap:28px;flex-wrap:wrap}
+.foot .links a{
+  font-family:'Inter',sans-serif;
+  font-size:11.5px;
+  letter-spacing:.18em;
+  color:var(--ink-2);
+  text-transform:uppercase;
+  text-decoration:none;
+}
+.foot .links a:hover{color:var(--ink)}
+.foot .copy{
+  font-size:11px;
+  letter-spacing:.08em;
+  color:var(--muted);
+  font-family:'Inter',sans-serif;
+}
+
+/* ===== Anim ===== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.section .cards > *,.trend-table tbody tr{animation:fadeUp .5s ease-out both}
+.section .cards > *:nth-child(1){animation-delay:.05s}
+.section .cards > *:nth-child(2){animation-delay:.10s}
+.section .cards > *:nth-child(3){animation-delay:.15s}
+.section .cards > *:nth-child(4){animation-delay:.20s}
+.section .cards > *:nth-child(5){animation-delay:.25s}
 </style>
 </head>
 <body>
 
+<!-- ============== UTILITY BAR ============== -->
+<div class="utility">
+  <div class="wrap">
+    <span class="brand">PLAT YONEZAWA</span>
+    <span class="meta">Survey Report Archive</span>
+  </div>
+</div>
+
 <!-- ============== HERO ============== -->
 <section class="hero">
   <div class="wrap">
-    <span class="mt">Survey Report Archive</span>
-    <h1>ATTA 台中国際旅展<br>アンケート<span class="accent">レポート</span></h1>
-    <div class="sub-en">ATTA Taichung International Travel Fair — Survey Report Archive</div>
+    <p class="eyebrow">ATTA TAICHUNG — Survey Archive</p>
+    <h1>
+      <span class="small">ATTA 台中国際旅展</span>
+      アンケートレポート<br>アーカイブ
+    </h1>
     <p class="lead">プラットヨネザワ株式会社が台湾ATTA台中国際旅展で継続的に実施してきた来場者アンケートの分析レポートをまとめたアーカイブです。中国語圏の旅行者の体験ニーズ・価格感度・情報接点を、米沢の観光事業者向けに継続観測しています。</p>
-    <div class="hero-meta">
-      <div class="item"><span class="l">Organizer</span><span class="v">プラットヨネザワ株式会社</span></div>
-      <div class="item"><span class="l">Event</span><span class="v">ATTA 台中国際旅展</span></div>
-      <div class="item"><span class="l">Reports</span><span class="v">5 Editions</span></div>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <span class="l">Organizer</span>
+        <span class="v">プラットヨネザワ株式会社</span>
+      </div>
+      <div class="meta-item">
+        <span class="l">Event</span>
+        <span class="v">ATTA 台中国際旅展</span>
+      </div>
+      <div class="meta-item">
+        <span class="l">Editions</span>
+        <span class="v">5 / 5</span>
+      </div>
+      <div class="meta-item">
+        <span class="l">Period</span>
+        <span class="v">2024 — 2026</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============== TREND (Round-over-Round) ============== -->
-<section class="trend">
+<!-- ============== TREND TABLE ============== -->
+<section class="section">
   <div class="wrap">
     <div class="section-head">
+      <div class="label"><span class="num">01</span>Trend</div>
       <div>
-        <div class="num">ROUND-OVER-ROUND TREND</div>
-        <h2>ラウンド推移</h2>
+        <h2><span class="en">Round-over-Round Summary</span>ラウンド推移</h2>
+        <p class="sub">各回の主要指標を時系列で比較。台中マーケットにおける米沢の認知度と訪問意向の推移、希望体験のトップを一望できます。</p>
       </div>
-      <div class="right">SUMMARY</div>
     </div>
-    <p class="lead">各回の主要指標を時系列で比較。台中マーケットにおける米沢の認知度と訪問意向の推移、希望体験のトップを一望できます。</p>
-    <div class="trend-table-wrap">
+
+    <div class="table-scroll">
       <table class="trend-table">
         <thead>
           <tr>
-            <th>回</th>
-            <th>時期</th>
-            <th style="text-align:right">有効回答</th>
-            <th style="text-align:right">米沢認知率</th>
-            <th style="text-align:right">訪問意向率</th>
-            <th>No.1 希望体験</th>
+            <th>Round</th>
+            <th>Date</th>
+            <th class="right">回答数</th>
+            <th class="right">認知率</th>
+            <th class="right">意向率</th>
+            <th>No.1 体験</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="round-cell"><span class="badge">R5</span>第5回</td>
-            <td class="date-cell">2026.04</td>
-            <td class="num-cell">940<sup>件</sup></td>
-            <td class="num-cell"><span class="dash">—</span></td>
-            <td class="num-cell">38.8<sup>%★</sup></td>
-            <td class="top-cell">グルメ（米沢牛・蕎麦）</td>
-            <td><a class="report-link" href="./2026-04/">レポート →</a></td>
+            <td class="round"><span class="badge">R5</span>第5回</td>
+            <td class="date">2026.04</td>
+            <td class="num right">940<sup>件</sup></td>
+            <td class="num right"><span class="dash">—</span></td>
+            <td class="num right">38.8<sup>%★</sup></td>
+            <td class="top">グルメ（米沢牛・蕎麦）</td>
+            <td class="right"><a class="arrow" href="./2026-04/">View</a></td>
           </tr>
           <tr>
-            <td class="round-cell"><span class="badge">R4</span>第4回</td>
-            <td class="date-cell">2025.10</td>
-            <td class="num-cell">803<sup>件</sup></td>
-            <td class="num-cell">55.9<sup>%</sup></td>
-            <td class="num-cell">89.3<sup>%</sup></td>
-            <td class="top-cell">グルメ（米沢牛・蕎麦）</td>
-            <td><a class="report-link" href="./2025-10/">レポート →</a></td>
+            <td class="round"><span class="badge">R4</span>第4回</td>
+            <td class="date">2025.10</td>
+            <td class="num right">803<sup>件</sup></td>
+            <td class="num right">55.9<sup>%</sup></td>
+            <td class="num right">89.3<sup>%</sup></td>
+            <td class="top">グルメ（米沢牛・蕎麦）</td>
+            <td class="right"><a class="arrow" href="./2025-10/">View</a></td>
           </tr>
           <tr>
-            <td class="round-cell"><span class="badge">R3</span>第3回</td>
-            <td class="date-cell">2025.04</td>
-            <td class="num-cell">248<sup>件</sup></td>
-            <td class="num-cell">52.0<sup>%</sup></td>
-            <td class="num-cell">94.0<sup>%</sup></td>
-            <td class="top-cell">米沢牛グルメ</td>
-            <td><a class="report-link" href="./2025-04/">レポート →</a></td>
+            <td class="round"><span class="badge">R3</span>第3回</td>
+            <td class="date">2025.04</td>
+            <td class="num right">248<sup>件</sup></td>
+            <td class="num right">52.0<sup>%</sup></td>
+            <td class="num right">94.0<sup>%</sup></td>
+            <td class="top">米沢牛グルメ</td>
+            <td class="right"><a class="arrow" href="./2025-04/">View</a></td>
           </tr>
           <tr class="coming">
-            <td class="round-cell"><span class="badge">R2</span>第2回</td>
-            <td class="date-cell">2024.10</td>
-            <td class="num-cell"><span class="dash">—</span></td>
-            <td class="num-cell"><span class="dash">—</span></td>
-            <td class="num-cell"><span class="dash">—</span></td>
-            <td class="top-cell"><span class="dash">準備中</span></td>
+            <td class="round"><span class="badge">R2</span>第2回</td>
+            <td class="date">2024.10</td>
+            <td class="num right"><span class="dash">—</span></td>
+            <td class="num right"><span class="dash">—</span></td>
+            <td class="num right"><span class="dash">—</span></td>
+            <td class="top">準備中</td>
             <td></td>
           </tr>
           <tr class="coming">
-            <td class="round-cell"><span class="badge">R1</span>第1回</td>
-            <td class="date-cell">2024.04</td>
-            <td class="num-cell"><span class="dash">—</span></td>
-            <td class="num-cell"><span class="dash">—</span></td>
-            <td class="num-cell"><span class="dash">—</span></td>
-            <td class="top-cell"><span class="dash">準備中</span></td>
+            <td class="round"><span class="badge">R1</span>第1回</td>
+            <td class="date">2024.04</td>
+            <td class="num right"><span class="dash">—</span></td>
+            <td class="num right"><span class="dash">—</span></td>
+            <td class="num right"><span class="dash">—</span></td>
+            <td class="top">準備中</td>
             <td></td>
           </tr>
         </tbody>
@@ -550,115 +568,130 @@ footer .note{
 <section class="section">
   <div class="wrap">
     <div class="section-head">
+      <div class="label"><span class="num">02</span>Reports</div>
       <div>
-        <div class="num">REPORTS</div>
-        <h2>各回レポート</h2>
+        <h2><span class="en">Individual Reports</span>各回レポート</h2>
+        <p class="sub">各回の詳細分析レポートを開きます。質問項目・対象人数・季節要因により設問形式が一部異なります。</p>
       </div>
-      <div class="right">2024 — 2026</div>
     </div>
 
     <div class="cards">
-
-      <!-- Round 5 (LIVE) -->
-      <a class="card" href="./2026-04/" aria-label="第5回レポートを開く">
+      <!-- Round 5 -->
+      <a class="card" href="./2026-04/">
         <div class="img-wrap">
-          <span class="round-badge">第5回</span>
-          <span class="status-badge live">レポート公開中</span>
-          <img src="https://drive.google.com/thumbnail?id=10jr-rcvdPk33B-NuuKtjISyMCUVfIbES&sz=w1600" alt="2026年4月 ATTA台中国際旅展 第23回 ブース風景" loading="lazy" onerror="this.parentElement.classList.add('no-image');this.style.display='none'">
+          <div class="badge-row">
+            <span class="badge-round">R5</span>
+            <span class="badge-status live">Live</span>
+          </div>
+          <img src="https://drive.google.com/thumbnail?id=10jr-rcvdPk33B-NuuKtjISyMCUVfIbES&sz=w1600" alt="2026年4月 ATTA台中国際旅展 第23回">
         </div>
         <div class="body">
           <div class="period">2026.04.24 – 04.27 (FRI–MON)</div>
           <div class="title">ATTA 台中国際旅展 第23回</div>
           <div class="venue">台湾・台中｜940件の回答を分析</div>
           <div class="cta-row">
-            <span class="cta">分析レポートを開く <span class="arrow">→</span></span>
+            <span class="cta">View Report <span class="arrow"></span></span>
             <span class="meta-tag">FY2026 SPRING</span>
           </div>
         </div>
       </a>
 
-      <!-- Round 4 (LIVE) -->
-      <a class="card" href="./2025-10/" aria-label="第4回レポートを開く">
+      <!-- Round 4 -->
+      <a class="card" href="./2025-10/">
         <div class="img-wrap">
-          <span class="round-badge">第4回</span>
-          <span class="status-badge live">レポート公開中</span>
-          <img src="https://drive.google.com/thumbnail?id=1IwwBNGgmBzFFis8K5CiCuk5g1M7IysIy&sz=w1600" alt="2025年10月 ATTA台中国際旅展 第22回 ブース風景" loading="lazy" onerror="this.parentElement.classList.add('no-image');this.style.display='none'">
+          <div class="badge-row">
+            <span class="badge-round">R4</span>
+            <span class="badge-status live">Live</span>
+          </div>
+          <img src="https://drive.google.com/thumbnail?id=1IwwBNGgmBzFFis8K5CiCuk5g1M7IysIy&sz=w1600" alt="2025年10月 ATTA台中国際旅展 第22回">
         </div>
         <div class="body">
           <div class="period">2025.10.24 – 10.27 (FRI–MON)</div>
           <div class="title">ATTA 台中国際旅展 第22回</div>
           <div class="venue">台湾・台中｜803件の回答を分析</div>
           <div class="cta-row">
-            <span class="cta">分析レポートを開く <span class="arrow">→</span></span>
+            <span class="cta">View Report <span class="arrow"></span></span>
             <span class="meta-tag">FY2025 AUTUMN</span>
           </div>
         </div>
       </a>
 
-      <!-- Round 3 (LIVE) -->
-      <a class="card" href="./2025-04/" aria-label="第3回レポートを開く">
+      <!-- Round 3 -->
+      <a class="card" href="./2025-04/">
         <div class="img-wrap">
-          <span class="round-badge">第3回</span>
-          <span class="status-badge live">レポート公開中</span>
-          <img src="https://drive.google.com/thumbnail?id=1iB30CY4TyNpMKAEsqyjOFlnP4PuFggTu&sz=w1600" alt="2025年4月 ATTA台中国際旅展 第21回 ブース風景" loading="lazy" onerror="this.parentElement.classList.add('no-image');this.style.display='none'">
+          <div class="badge-row">
+            <span class="badge-round">R3</span>
+            <span class="badge-status live">Live</span>
+          </div>
+          <img src="https://drive.google.com/thumbnail?id=1iB30CY4TyNpMKAEsqyjOFlnP4PuFggTu&sz=w1600" alt="2025年4月 ATTA台中国際旅展 第21回">
         </div>
         <div class="body">
           <div class="period">2025.04.25 – 04.28 (FRI–MON)</div>
           <div class="title">ATTA 台中国際旅展 第21回</div>
           <div class="venue">台湾・台中｜248件の回答を分析</div>
           <div class="cta-row">
-            <span class="cta">分析レポートを開く <span class="arrow">→</span></span>
+            <span class="cta">View Report <span class="arrow"></span></span>
             <span class="meta-tag">FY2025 SPRING</span>
           </div>
         </div>
       </a>
 
-      <!-- Round 2 (COMING) -->
-      <div class="card disabled no-image" aria-label="第2回 準備中">
+      <!-- Round 2 -->
+      <div class="card disabled no-image">
         <div class="img-wrap">
-          <span class="round-badge">第2回</span>
-          <span class="status-badge coming">準備中</span>
-          <img src="https://drive.google.com/thumbnail?id=1EPWRjTLmzJrE2za4z7VoMpqVXHq6rKtH&sz=w1600" alt="2024年10月 ATTA台中国際旅展 第20回 ブース風景" loading="lazy" onerror="this.parentElement.classList.add('no-image');this.style.display='none'">
+          <div class="badge-row">
+            <span class="badge-round">R2</span>
+            <span class="badge-status coming">Coming</span>
+          </div>
         </div>
         <div class="body">
           <div class="period">2024.10.25 – 10.28 (FRI–MON)</div>
           <div class="title">ATTA 台中国際旅展 第20回</div>
           <div class="venue">台湾・台中</div>
           <div class="cta-row">
-            <span class="cta">公開準備中</span>
+            <span class="cta">公開準備中 <span class="arrow"></span></span>
             <span class="meta-tag">FY2024 AUTUMN</span>
           </div>
         </div>
       </div>
 
-      <!-- Round 1 (COMING - no image) -->
-      <div class="card disabled no-image" aria-label="第1回 準備中">
+      <!-- Round 1 -->
+      <div class="card disabled no-image">
         <div class="img-wrap">
-          <span class="round-badge">第1回</span>
-          <span class="status-badge coming">準備中</span>
-          <span class="placeholder">ATTA 19</span>
+          <div class="badge-row">
+            <span class="badge-round">R1</span>
+            <span class="badge-status coming">Coming</span>
+          </div>
         </div>
         <div class="body">
-          <div class="period">2024.04.14 – 04.17 (SUN–WED)</div>
+          <div class="period">2024.04.26 – 04.29 (FRI–MON)</div>
           <div class="title">ATTA 台中国際旅展 第19回</div>
           <div class="venue">台湾・台中</div>
           <div class="cta-row">
-            <span class="cta">公開準備中</span>
+            <span class="cta">公開準備中 <span class="arrow"></span></span>
             <span class="meta-tag">FY2024 SPRING</span>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- ============== FOOTER ============== -->
-<footer>
+<footer class="foot">
   <div class="wrap">
-    <div class="brand">プラットヨネザワ株式会社</div>
-    <div class="copy">Copyright © 2026 プラットヨネザワ株式会社</div>
-    <div class="note">本レポートはAIによる自動分析を含みます</div>
+    <div class="row">
+      <div class="brand">
+        プラットヨネザワ株式会社
+        <span class="en">Plat Yonezawa Inc.</span>
+      </div>
+      <div class="links">
+        <a href="https://platkokoro.github.io/atta-taichung-2026/2025-04/">第3回</a>
+        <a href="https://platkokoro.github.io/atta-taichung-2026/2025-10/">第4回</a>
+        <a href="https://platkokoro.github.io/atta-taichung-2026/2026-04/">第5回</a>
+      </div>
+    </div>
+    <p class="copy">© 2026 PLAT YONEZAWA Inc. All Rights Reserved.</p>
   </div>
 </footer>
 
