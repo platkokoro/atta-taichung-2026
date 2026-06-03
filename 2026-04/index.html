@@ -3,221 +3,176 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ATTA台中国際旅展 来場者アンケート 分析レポート | 米沢市観光</title>
+<title>ATTA台中国際旅展 第5回 来場者アンケート 分析レポート | 米沢市観光</title>
+<meta name="description" content="2026年4月開催・ATTA台中国際旅展第23回の来場者アンケート940件を分析。台湾・中国語圏旅行者の米沢への関心・興味体験・許容価格・情報接点を詳解。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;700&family=Noto+Sans+JP:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root{
-  --navy:#0a1628;
-  --navy-2:#142442;
-  --navy-3:#1d3158;
-  --gold:#c9a227;
-  --gold-soft:#e0bf4c;
-  --gold-dim:#8a6f1c;
-  --ink:#0a1628;
-  --paper:#f8f5ec;
-  --line:#1f3358;
-  --muted:#7a8aa3;
-  --pos:#3aa66f;
-  --neg:#c75a4a;
-  --neu:#8a8a8a;
+  --bg:#ffffff; --bg-soft:#fafafa; --bg-line:#eeeeee;
+  --ink:#0d0d0d; --ink-2:#3a3a3a; --muted:#888888; --hair:#e5e5e5;
+  --accent:#0a1628; --accent-2:#5a6478; --accent-3:#b8b8b8;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--navy);color:#eef2f7;font-family:'Noto Sans JP',sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{background:var(--bg);color:var(--ink);font-family:'Noto Sans JP','Inter',sans-serif;font-weight:300;line-height:1.75;-webkit-font-smoothing:antialiased;letter-spacing:.01em}
 body{overflow-x:hidden}
-h1,h2,h3,h4{font-family:'Noto Serif JP',serif;font-weight:700;letter-spacing:.02em;line-height:1.3}
-.serif-en{font-family:'DM Serif Display',serif;letter-spacing:.01em}
+img{display:block;max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
 
-/* ===== Layout ===== */
-.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
-section{padding:72px 0;position:relative}
-section + section{border-top:1px solid rgba(201,162,39,.12)}
+/* ===== Utility ===== */
+.utility{border-bottom:1px solid var(--hair);padding:14px 0;font-size:11px;letter-spacing:.18em}
+.utility .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.utility .brand{font-family:'Inter',sans-serif;font-weight:500;color:var(--ink);text-transform:uppercase}
+.utility .meta{color:var(--muted);text-transform:uppercase;font-family:'Inter',sans-serif}
 
 /* ===== Hero ===== */
-.hero{
-  position:relative;
-  padding:96px 0 80px;
-  background:
-    radial-gradient(900px 500px at 85% -10%,rgba(201,162,39,.18),transparent 60%),
-    radial-gradient(700px 400px at 10% 110%,rgba(201,162,39,.10),transparent 60%),
-    linear-gradient(180deg,#0a1628 0%,#0d1b35 100%);
-  overflow:hidden;
-}
-.hero::before{
-  content:"";position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(201,162,39,.06) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(201,162,39,.06) 1px,transparent 1px);
-  background-size:60px 60px;
-  pointer-events:none;
-  mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
-  -webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
-}
-.hero .mt{
-  display:inline-block;font-family:'DM Serif Display',serif;color:var(--gold-soft);
-  font-size:14px;letter-spacing:.4em;text-transform:uppercase;border:1px solid rgba(201,162,39,.45);
-  padding:6px 16px;border-radius:999px;background:rgba(201,162,39,.06);
-  margin-bottom:28px
-}
-.hero h1{
-  font-size:clamp(32px,5.4vw,62px);
-  color:#fff;margin-bottom:18px
-}
-.hero h1 .accent{color:var(--gold-soft)}
-.hero p.lead{
-  color:#cdd6e3;font-size:clamp(15px,1.4vw,18px);max-width:760px
-}
-.hero-meta{
-  margin-top:44px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;
-  border-top:1px solid rgba(201,162,39,.25);padding-top:28px
-}
-.hero-meta .item .l{font-size:11px;letter-spacing:.3em;color:var(--gold-soft);text-transform:uppercase;margin-bottom:6px}
-.hero-meta .item .v{font-family:'DM Serif Display',serif;font-size:22px;color:#fff}
+.hero{padding:140px 0 120px;border-bottom:1px solid var(--hair)}
+.hero .eyebrow{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.32em;color:var(--muted);text-transform:uppercase;margin-bottom:48px;display:flex;align-items:center;gap:14px}
+.hero .eyebrow::before{content:"";display:block;width:42px;height:1px;background:var(--ink)}
+.hero h1{font-family:'Noto Sans JP',sans-serif;font-weight:200;font-size:clamp(40px,5.8vw,82px);line-height:1.12;letter-spacing:-.01em;color:var(--ink);margin-bottom:32px}
+.hero h1 .small{display:block;font-size:.42em;color:var(--ink-2);margin-bottom:14px;font-weight:300;letter-spacing:.02em}
+.hero .lead{max-width:640px;color:var(--ink-2);font-size:15.5px;font-weight:300;line-height:1.95;margin-bottom:64px}
+.hero .meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--hair);padding-top:32px}
+.hero .meta-item{display:flex;flex-direction:column;gap:8px;padding-right:24px}
+.hero .meta-item .l{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.hero .meta-item .v{font-size:14px;color:var(--ink);font-weight:400}
+@media(max-width:760px){.hero{padding:72px 0 60px}.hero .meta-grid{grid-template-columns:repeat(2,1fr);gap:24px}}
 
-/* ===== Section heading ===== */
-.sec-head{margin-bottom:36px}
-.sec-head .num{font-family:'DM Serif Display',serif;color:var(--gold);font-size:14px;letter-spacing:.4em}
-.sec-head h2{font-size:clamp(24px,3vw,34px);color:#fff;margin-top:6px}
-.sec-head .sub{color:#9fb0c8;margin-top:8px;max-width:780px}
+/* ===== TOC ===== */
+.toc{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:saturate(180%) blur(8px);-webkit-backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--hair)}
+.toc .wrap{display:flex;overflow-x:auto;scrollbar-width:none}
+.toc .wrap::-webkit-scrollbar{display:none}
+.toc a{display:block;padding:18px 18px;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.toc a:hover{color:var(--ink);border-bottom-color:var(--ink)}
+.toc a .n{color:var(--ink);margin-right:6px;font-weight:500}
+
+/* ===== Section ===== */
+.section{padding:120px 0;border-bottom:1px solid var(--hair)}
+.section-head{display:grid;grid-template-columns:240px 1fr;gap:48px;margin-bottom:72px}
+.section-head .label{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.28em;color:var(--muted);text-transform:uppercase}
+.section-head .label .num{display:block;color:var(--ink);font-size:14px;margin-bottom:6px;letter-spacing:.18em}
+.section-head h2{font-family:'Noto Sans JP',sans-serif;font-weight:300;font-size:clamp(28px,3.2vw,40px);line-height:1.3;color:var(--ink);letter-spacing:-.005em}
+.section-head h2 .en{display:block;font-family:'Inter',sans-serif;font-weight:400;font-size:12px;letter-spacing:.28em;color:var(--muted);text-transform:uppercase;margin-bottom:14px}
+.section-head .sub{margin-top:20px;color:var(--ink-2);font-size:14.5px;max-width:680px;line-height:1.85}
+.section-head .sub strong{color:var(--ink);font-weight:500}
+@media(max-width:760px){.section{padding:72px 0}.section-head{grid-template-columns:1fr;gap:14px;margin-bottom:40px}}
 
 /* ===== KPI ===== */
-.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-@media(max-width:780px){.kpi-grid{grid-template-columns:1fr}}
-.kpi{
-  background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
-  border:1px solid rgba(201,162,39,.25);
-  border-radius:18px;padding:30px 28px;position:relative;overflow:hidden
-}
-.kpi::before{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:linear-gradient(90deg,var(--gold),transparent)}
-.kpi .l{font-size:12px;letter-spacing:.3em;color:var(--gold-soft);text-transform:uppercase}
-.kpi .big{font-family:'DM Serif Display',serif;font-size:56px;color:#fff;margin:6px 0;line-height:1}
-.kpi .big small{font-size:22px;color:#a9b8d0;margin-left:4px}
-.kpi .desc{color:#cdd6e3;font-size:14px}
-.kpi .ja-name{font-family:'Noto Serif JP',serif;color:#fff;font-size:24px;margin-bottom:4px}
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--hair)}
+.kpi-card{padding:36px 28px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);display:flex;flex-direction:column;gap:12px}
+.kpi-card:nth-child(3n){border-right:none}
+.kpi-card .label{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.kpi-card .value{font-family:'Noto Sans JP',sans-serif;font-weight:200;font-size:clamp(40px,5vw,68px);line-height:1;color:var(--ink);letter-spacing:-.02em}
+.kpi-card .value sup{font-family:'Inter',sans-serif;font-weight:400;font-size:.32em;color:var(--muted);vertical-align:super;margin-left:4px}
+.kpi-card .value-text{font-family:'Noto Sans JP',sans-serif;font-weight:400;font-size:clamp(22px,2.4vw,28px);line-height:1.3;color:var(--ink);letter-spacing:-.005em}
+.kpi-card .desc{font-size:13px;color:var(--ink-2);line-height:1.6}
+@media(max-width:780px){.kpi-grid{grid-template-columns:1fr}.kpi-card{border-right:none!important}}
 
-/* ===== Cards ===== */
-.card{
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(201,162,39,.18);
-  border-radius:16px;padding:28px;margin-bottom:22px
-}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-@media(max-width:880px){.two-col{grid-template-columns:1fr}}
-
-.chart-wrap{position:relative;height:340px}
-.chart-wrap.tall{height:420px}
-.chart-wrap.short{height:280px}
-
-/* ===== Insight ===== */
-.insight{
-  margin-top:18px;padding:20px 22px;border-left:3px solid var(--gold);
-  background:linear-gradient(90deg,rgba(201,162,39,.08),rgba(201,162,39,0));
-  border-radius:6px;color:#e8edf6
-}
-.insight .label{font-family:'DM Serif Display',serif;font-size:12px;letter-spacing:.3em;color:var(--gold-soft);text-transform:uppercase;margin-bottom:8px}
-
-/* ===== Experience price grid ===== */
-.exp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-@media(max-width:880px){.exp-grid{grid-template-columns:1fr}}
-.exp-card{padding:24px;background:rgba(255,255,255,.03);border:1px solid rgba(201,162,39,.18);border-radius:14px}
-.exp-card .name{font-family:'Noto Serif JP',serif;font-size:20px;color:#fff;margin-bottom:4px}
-.exp-card .meta{color:var(--gold-soft);font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
-.price-bar{display:flex;height:34px;border-radius:6px;overflow:hidden;margin-bottom:14px;background:#1a2a48}
-.price-bar .seg{display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:500;transition:.2s}
-.price-bar .seg:hover{filter:brightness(1.15)}
-.price-legend{display:grid;grid-template-columns:1fr;gap:6px;font-size:13px}
-.price-legend .row{display:flex;justify-content:space-between;align-items:center;padding:6px 8px;border-radius:4px}
-.price-legend .row:hover{background:rgba(201,162,39,.06)}
-.price-legend .swatch{width:12px;height:12px;border-radius:3px;display:inline-block;margin-right:8px;vertical-align:middle}
-.price-legend .lbl{color:#cdd6e3}
-.price-legend .val{color:#fff;font-family:'DM Serif Display',serif;font-size:15px}
-.exp-headline{
-  margin-bottom:10px;padding:8px 12px;background:rgba(201,162,39,.10);
-  border-left:3px solid var(--gold);border-radius:4px;font-size:13px;color:#e8edf6
-}
-
-/* ===== Comments ===== */
-.cmt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.cmt{
-  background:rgba(255,255,255,.03);border:1px solid rgba(201,162,39,.15);
-  border-radius:12px;padding:18px 18px 16px;position:relative
-}
-.cmt::before{
-  content:"";position:absolute;left:22px;bottom:-9px;width:16px;height:16px;
-  background:rgba(255,255,255,.03);border-right:1px solid rgba(201,162,39,.15);border-bottom:1px solid rgba(201,162,39,.15);
-  transform:rotate(45deg)
-}
-.cmt .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.cmt .num{font-family:'DM Serif Display',serif;color:var(--gold-soft);font-size:14px;letter-spacing:.18em}
-.cmt .tag{font-size:10px;letter-spacing:.2em;padding:3px 10px;border-radius:999px;text-transform:uppercase}
-.tag-pos{background:rgba(58,166,111,.15);color:#7adfa8;border:1px solid rgba(58,166,111,.4)}
-.tag-imp{background:rgba(201,162,39,.15);color:var(--gold-soft);border:1px solid rgba(201,162,39,.45)}
-.tag-neu{background:rgba(138,138,138,.12);color:#cdd6e3;border:1px solid rgba(138,138,138,.35)}
-.cmt .body{color:#eef2f7;font-size:15px;line-height:1.6}
-.cmt .ja{color:#9fb0c8;font-size:12px;margin-top:6px;font-style:italic}
+/* ===== Two col ===== */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+@media(max-width:880px){.two-col{grid-template-columns:1fr;gap:32px}}
 
 /* ===== Score distribution ===== */
-.score-row{display:flex;align-items:center;margin-bottom:10px;gap:14px}
-.score-row .s{font-family:'DM Serif Display',serif;font-size:18px;color:var(--gold-soft);width:28px;text-align:center}
-.score-row .b{flex:1;height:22px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden;position:relative}
-.score-row .b .f{height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#0a1628;font-weight:700;font-size:12px;transition:width .8s ease-out}
-.score-row .n{font-family:'DM Serif Display',serif;color:#cdd6e3;width:64px;text-align:right;font-size:14px}
+.score-block{padding-top:24px;border-top:1px solid var(--ink)}
+.score-block .title{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+.score-block .title .ja{display:block;color:var(--ink);font-family:'Noto Sans JP',sans-serif;font-size:13px;letter-spacing:.04em;text-transform:none;font-weight:500;margin-top:4px}
+.score-row{display:flex;align-items:center;margin-bottom:8px;gap:14px}
+.score-row .s{font-family:'Inter',sans-serif;font-weight:500;font-size:13px;color:var(--ink);width:24px;text-align:center}
+.score-row .b{flex:1;height:18px;background:var(--bg-line);overflow:hidden;position:relative}
+.score-row .b .f{height:100%;background:var(--ink);display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-family:'Inter',sans-serif;font-weight:500;font-size:11px;transition:width .8s ease-out}
+.score-row .n{font-family:'Inter',sans-serif;color:var(--ink);width:78px;text-align:right;font-size:12px}
+.score-row .n .pct{color:var(--muted);font-size:11px;margin-left:6px}
+
+/* ===== Chart card ===== */
+.chart-card{padding-top:24px;border-top:1px solid var(--ink)}
+.chart-card .title{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+.chart-card .title .ja{display:block;color:var(--ink);font-family:'Noto Sans JP',sans-serif;font-size:13px;letter-spacing:.04em;text-transform:none;font-weight:500;margin-top:4px}
+.chart-wrap{position:relative}
+.chart-note{margin-top:18px;font-size:12px;color:var(--muted)}
+
+/* ===== Insight ===== */
+.insight{margin-top:56px;padding:32px 36px;background:var(--bg-soft);border-left:2px solid var(--ink)}
+.insight .label{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.insight .text{font-size:14.5px;color:var(--ink);line-height:1.9}
+.insight .text strong{color:var(--ink);font-weight:500;background:linear-gradient(180deg,transparent 60%,rgba(201,162,39,.18) 60%);padding:0 2px}
+
+/* ===== Price experience grid ===== */
+.exp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:48px}
+@media(max-width:880px){.exp-grid{grid-template-columns:1fr;gap:32px}}
+.exp-card{padding-top:24px;border-top:1px solid var(--ink)}
+.exp-card .name{font-family:'Noto Sans JP',sans-serif;font-weight:500;font-size:20px;color:var(--ink);margin-bottom:6px;letter-spacing:-.005em}
+.exp-card .meta{font-family:'Inter',sans-serif;color:var(--muted);font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px}
+.exp-card .headline{font-size:13px;color:var(--ink);line-height:1.7;background:var(--bg-soft);padding:12px 14px;border-left:2px solid var(--ink);margin-bottom:16px}
+.price-bar{display:flex;height:32px;overflow:hidden;margin-bottom:16px;background:var(--bg-line)}
+.price-bar .seg{display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Inter',sans-serif;font-weight:500;font-size:11px;transition:filter .2s}
+.price-bar .seg:hover{filter:brightness(1.1)}
+.price-legend{display:flex;flex-direction:column;gap:8px;font-size:12.5px}
+.price-legend .row{display:flex;justify-content:space-between;align-items:center;padding:4px 0}
+.price-legend .swatch{width:10px;height:10px;display:inline-block;margin-right:10px;vertical-align:middle}
+.price-legend .lbl{color:var(--ink-2)}
+.price-legend .val{font-family:'Inter',sans-serif;font-weight:500;color:var(--ink)}
+.price-legend .val .pct{color:var(--muted);margin-left:6px;font-weight:400}
+
+/* ===== Voices ===== */
+.voices-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.voice-card{padding:22px 24px;border:1px solid var(--hair);background:var(--bg);position:relative;transition:border-color .2s}
+.voice-card:hover{border-color:var(--ink)}
+.voice-card .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.voice-card .num{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.22em;color:var(--muted)}
+.voice-card .tag{font-family:'Inter',sans-serif;font-size:9.5px;letter-spacing:.2em;padding:3px 10px;text-transform:uppercase;font-weight:500}
+.tag-pos{background:var(--ink);color:#fff}
+.tag-imp{background:#fff;color:var(--ink);border:1px solid var(--ink)}
+.tag-neu{background:var(--bg-line);color:var(--muted)}
+.voice-card .body{color:var(--ink);font-size:15px;line-height:1.6;font-weight:400}
+.voice-card .ja{color:var(--muted);font-size:11.5px;margin-top:8px;line-height:1.6}
+
+/* ===== Factor sidebar ===== */
+.factor-box{padding-top:24px;border-top:1px solid var(--ink)}
+.factor-box .title{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.factor-box p{font-size:14px;color:var(--ink-2);line-height:1.85;margin-bottom:14px}
+.factor-box p strong{color:var(--ink);font-weight:500;background:linear-gradient(180deg,transparent 60%,rgba(201,162,39,.18) 60%);padding:0 2px}
 
 /* ===== Footer ===== */
-footer{
-  border-top:1px solid rgba(201,162,39,.25);padding:50px 0 60px;
-  background:#08111e;text-align:center
-}
-footer .brand{font-family:'Noto Serif JP',serif;font-size:18px;color:var(--gold-soft);margin-bottom:8px}
-footer .note{color:#7a8aa3;font-size:12px;letter-spacing:.06em}
-footer .small{color:#5d6d85;font-size:11px;margin-top:14px}
+.foot{padding:80px 0 60px;background:var(--bg)}
+.foot .row{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;flex-wrap:wrap;padding-bottom:32px;border-bottom:1px solid var(--hair);margin-bottom:32px}
+.foot .brand{font-family:'Noto Sans JP',sans-serif;font-weight:500;font-size:15px;color:var(--ink)}
+.foot .brand .en{display:block;font-family:'Inter',sans-serif;font-weight:400;font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-top:6px}
+.foot .back{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.22em;color:var(--ink);text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:3px;transition:opacity .2s}
+.foot .back:hover{opacity:.5}
+.foot .copy{font-size:11px;letter-spacing:.08em;color:var(--muted);font-family:'Inter',sans-serif}
 
-/* ===== Anchored nav ===== */
-.toc{
-  position:sticky;top:0;z-index:50;
-  background:rgba(8,17,30,.85);backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(201,162,39,.18);
-  padding:14px 0
-}
-.toc ul{display:flex;flex-wrap:wrap;gap:6px 18px;list-style:none;font-size:12px;letter-spacing:.06em}
-.toc a{color:#9fb0c8;text-decoration:none;padding:4px 0;border-bottom:1px solid transparent;transition:.15s}
-.toc a:hover{color:var(--gold-soft);border-color:var(--gold-soft)}
-
-/* ===== Print ===== */
-@media print{
-  body{background:#fff;color:#000}
-  .toc{display:none}
-  section{padding:30px 0;break-inside:avoid;page-break-inside:avoid}
-  .card,.kpi,.exp-card,.cmt{background:#fff !important;border-color:#888 !important;box-shadow:none}
-  .hero{background:#fff !important}
-  .hero h1,.kpi .big,.kpi .ja-name,.sec-head h2,.cmt .body{color:#000}
-  .insight{background:#fbf6e0 !important;color:#000}
-  .price-legend .lbl,.kpi .desc{color:#222}
-  .score-row .b{background:#eee}
-  footer{background:#fff;color:#000}
-  footer .brand{color:#000}
-}
-
-/* anim */
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-section > .wrap > *{animation:fadeIn .6s ease-out both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
 </style>
 </head>
 <body>
 
+<!-- ============== UTILITY ============== -->
+<div class="utility">
+  <div class="wrap">
+    <span class="brand">PLAT YONEZAWA</span>
+    <span class="meta">5th Edition — Survey Analysis Report</span>
+  </div>
+</div>
+
 <!-- ============== HERO ============== -->
 <section class="hero">
   <div class="wrap">
-    <span class="mt">Survey Analysis Report</span>
-    <h1>ATTA台中国際旅展<br>来場者アンケート <span class="accent">分析レポート</span></h1>
-    <p class="lead">台湾・中国語圏の旅行者940名から得た一次データを、米沢の温泉旅館・酒蔵をはじめとする観光事業者向けに、需要・価格感度・情報接点の3軸で読み解く。</p>
-    <div class="hero-meta">
-      <div class="item"><div class="l">実施日</div><div class="v">2026.04.24 – 04.27</div></div>
-      <div class="item"><div class="l">会場</div><div class="v">ATTA 台中国際旅展</div></div>
-      <div class="item"><div class="l">回答数</div><div class="v">940件</div></div>
-      <div class="item"><div class="l">対象</div><div class="v">中国語圏来場者</div></div>
+    <p class="eyebrow">ATTA TAICHUNG — Round 5 Report</p>
+    <h1>
+      <span class="small">ATTA 台中国際旅展 第5回</span>
+      来場者アンケート<br>分析レポート
+    </h1>
+    <p class="lead">2026年4月、台中で開催された第23回ATTA国際旅展における来場者アンケート940件を分析。中国語圏旅行者の満足度・訪問意向・体験興味・許容価格・情報接点を、米沢の温泉旅館・酒蔵をはじめとする観光事業者向けに3軸で読み解きます。</p>
+    <div class="meta-grid">
+      <div class="meta-item"><span class="l">Period</span><span class="v">2026.04.24 – 04.27</span></div>
+      <div class="meta-item"><span class="l">Venue</span><span class="v">ATTA 台中国際旅展 第23回</span></div>
+      <div class="meta-item"><span class="l">Sample</span><span class="v">n = 940</span></div>
+      <div class="meta-item"><span class="l">Target</span><span class="v">中国語圏来場者</span></div>
     </div>
   </div>
 </section>
@@ -225,265 +180,282 @@ section > .wrap > *{animation:fadeIn .6s ease-out both}
 <!-- ============== TOC ============== -->
 <nav class="toc">
   <div class="wrap">
-    <ul>
-      <li><a href="#kpi">01 サマリー</a></li>
-      <li><a href="#scores">02 満足度・訪問意向</a></li>
-      <li><a href="#interest">03 体験別 興味度</a></li>
-      <li><a href="#price">04 許容価格帯</a></li>
-      <li><a href="#channel">05 情報収集チャネル</a></li>
-      <li><a href="#factor">06 体験選択の重視点</a></li>
-      <li><a href="#voice">07 来場者の声</a></li>
-    </ul>
+    <a href="#kpi"      ><span class="n">01</span>Summary</a>
+    <a href="#scores"   ><span class="n">02</span>Scores</a>
+    <a href="#interest" ><span class="n">03</span>Interest</a>
+    <a href="#price"    ><span class="n">04</span>Price</a>
+    <a href="#channel"  ><span class="n">05</span>Channel</a>
+    <a href="#factor"   ><span class="n">06</span>Factor</a>
+    <a href="#voice"    ><span class="n">07</span>Voices</a>
   </div>
 </nav>
 
-<!-- ============== 1 KPI ============== -->
-<section id="kpi">
+<!-- ============== 01 KPI ============== -->
+<section class="section" id="kpi">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="num">01 / SUMMARY</div>
-      <h2>主要指標 ─ 一目で分かる需要シグナル</h2>
-      <p class="sub">展示ブースの満足度は10点満点で平均8.8点と高水準。実訪問への意向も平均8.21点と、関心が「行きたい」へと転化しやすい母集団であることを示す。</p>
+    <div class="section-head reveal">
+      <div class="label"><span class="num">01</span>Summary</div>
+      <div>
+        <h2><span class="en">Key Metrics</span>主要指標</h2>
+        <p class="sub">展示ブースの満足度は10点満点で平均<strong>8.8点</strong>と高水準。実訪問への意向も平均<strong>8.2点</strong>と、関心が「行きたい」へと転化しやすい母集団であることを示す。</p>
+      </div>
     </div>
-    <div class="kpi-grid">
-      <div class="kpi">
-        <div class="l">Booth Satisfaction</div>
-        <div class="big">8.8<small>/10</small></div>
-        <div class="desc">展示会満足度の平均スコア（n=940）。10点回答が58%を占め、全体の80%超が8点以上。</div>
+    <div class="kpi-grid reveal">
+      <div class="kpi-card">
+        <span class="label">Booth Satisfaction</span>
+        <div class="value">8.8<sup>/10</sup></div>
+        <p class="desc">展示会満足度の平均スコア（n=940）。10点回答が58%を占め、全体の80%超が8点以上。</p>
       </div>
-      <div class="kpi">
-        <div class="l">Travel Intention</div>
-        <div class="big">8.2<small>/10</small></div>
-        <div class="desc">展示後の米沢訪問意向の平均スコア。8点以上が72%で、能動的な見込み層が厚い。</div>
+      <div class="kpi-card">
+        <span class="label">Travel Intention</span>
+        <div class="value">8.2<sup>/10</sup></div>
+        <p class="desc">展示後の米沢訪問意向の平均スコア。8点以上が72%で、能動的な見込み層が厚い。</p>
       </div>
-      <div class="kpi">
-        <div class="l">Top Experience</div>
-        <div class="ja-name">温泉旅館宿泊</div>
-        <div class="big">97.7<small>%</small></div>
-        <div class="desc">7体験中で最も興味率が高い体験。中国語圏来場者にとって温泉宿泊は王道で外せない訴求軸。</div>
+      <div class="kpi-card">
+        <span class="label">Top Experience</span>
+        <div class="value-text">温泉旅館宿泊</div>
+        <p class="desc">7体験中で最も興味率が高い（97.7%）。中国語圏来場者にとって温泉宿泊は王道で外せない訴求軸。</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============== 2 SCORES ============== -->
-<section id="scores">
+<!-- ============== 02 SCORES ============== -->
+<section class="section" id="scores">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="num">02 / SCORES</div>
-      <h2>展示会満足度・訪問意向の分布</h2>
-      <p class="sub">満足度の重心は10点に集中する一方、訪問意向は8〜10点に幅広く分布。「ブース体験で満足→具体的な旅程化」の段差を埋める情報設計が次の課題。</p>
+    <div class="section-head reveal">
+      <div class="label"><span class="num">02</span>Scores</div>
+      <div>
+        <h2><span class="en">Score Distribution</span>展示会満足度・訪問意向の分布</h2>
+        <p class="sub">満足度の重心は10点に集中する一方、訪問意向は8〜10点に幅広く分布。<strong>「ブース体験で満足→具体的な旅程化」</strong>の段差を埋める情報設計が次の課題。</p>
+      </div>
     </div>
-    <div class="two-col">
-      <div class="card">
-        <h3 style="font-size:18px;color:#fff;margin-bottom:18px">展示会満足度（1〜10点）</h3>
+    <div class="two-col reveal">
+      <div class="score-block">
+        <p class="title">Booth Satisfaction<span class="ja">展示会満足度（1〜10点 / n = 940）</span></p>
         <div id="sat-dist"></div>
       </div>
-      <div class="card">
-        <h3 style="font-size:18px;color:#fff;margin-bottom:18px">米沢訪問意向（1〜10点）</h3>
+      <div class="score-block">
+        <p class="title">Visit Intention<span class="ja">米沢訪問意向（1〜10点 / n = 940）</span></p>
         <div id="visit-dist"></div>
       </div>
     </div>
-    <div class="insight">
-      <div class="label">AI Insight</div>
-      満足度10点の回答は545件（58.0%）に達し、ブース体験そのものは極めて高評価である。一方で訪問意向で10点を付けた層は365件（38.8%）にとどまり、満足度から訪問意向へのコンバージョン率には約20ポイントの段差がある。これは「米沢を知って好印象→具体的な旅行計画」までの導線（旅行会社パッケージ・モデルコース・繁体字情報）の補強余地を示唆している。
+    <div class="insight reveal">
+      <p class="label">Insight</p>
+      <p class="text">満足度10点の回答は<strong>545件（58.0%）</strong>に達し、ブース体験そのものは極めて高評価である。一方で訪問意向で10点を付けた層は<strong>365件（38.8%）</strong>にとどまり、満足度から訪問意向へのコンバージョン率には約20ポイントの段差がある。これは「米沢を知って好印象→具体的な旅行計画」までの導線（旅行会社パッケージ・モデルコース・繁体字情報）の補強余地を示唆している。</p>
     </div>
   </div>
 </section>
 
-<!-- ============== 3 INTEREST ============== -->
-<section id="interest">
+<!-- ============== 03 INTEREST ============== -->
+<section class="section" id="interest">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="num">03 / INTEREST</div>
-      <h2>体験コンテンツ別 興味度比較</h2>
-      <p class="sub">7体験すべてで興味率が90%を超える「需要過熱状態」。逆に言えば、競合や他産地と差別化できる切り口を示せなければ価格決定権を握れない。</p>
+    <div class="section-head reveal">
+      <div class="label"><span class="num">03</span>Interest</div>
+      <div>
+        <h2><span class="en">Experience Interest Comparison</span>体験コンテンツ別 興味度比較</h2>
+        <p class="sub">7体験すべてで興味率が90%を超える<strong>「需要過熱状態」</strong>。逆に言えば、競合や他産地と差別化できる切り口を示せなければ価格決定権を握れない。</p>
+      </div>
     </div>
-    <div class="card">
-      <div class="chart-wrap tall"><canvas id="interest-chart"></canvas></div>
+    <div class="chart-card reveal">
+      <p class="title">Interest Rate<span class="ja">体験コンテンツ別 興味あり率（n = 940）</span></p>
+      <div class="chart-wrap" style="height:420px;"><canvas id="interest-chart"></canvas></div>
     </div>
-    <div class="insight">
-      <div class="label">AI Insight</div>
-      首位は<strong>温泉旅館宿泊（97.7%）</strong>、続いて雪上体験（95.4%）・かてもの（93.7%）・米沢牛（93.6%）と僅差で並ぶ。最低でも「とここと（廃校宿泊）」が91.5%と、全体的に需要は飽和している。<br>
-      この状況下では「興味があるか」より「いくらまで払うか」「誰に勧めるか」のほうが事業者にとって重要な意思決定軸となる。次セクションの価格帯と、後段の重視点（独自性496件）を併読することで、旅館・酒蔵がプライシングと商品設計を最適化できる。
+    <div class="insight reveal">
+      <p class="label">Insight</p>
+      <p class="text">首位は<strong>温泉旅館宿泊（97.7%）</strong>、続いて雪上体験（95.4%）・かてもの（93.7%）・米沢牛（93.6%）と僅差で並ぶ。最低でも「とここと（廃校宿泊）」が91.5%と、全体的に需要は飽和している。<br>
+      この状況下では「興味があるか」より<strong>「いくらまで払うか」「誰に勧めるか」</strong>のほうが事業者にとって重要な意思決定軸となる。次セクションの価格帯と、後段の重視点（独自性496件）を併読することで、旅館・酒蔵がプライシングと商品設計を最適化できる。</p>
     </div>
   </div>
 </section>
 
-<!-- ============== 4 PRICE ============== -->
-<section id="price">
+<!-- ============== 04 PRICE ============== -->
+<section class="section" id="price">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="num">04 / PRICE</div>
-      <h2>各体験の許容価格帯</h2>
-      <p class="sub">「興味あり」と回答した方の価格レンジを積み上げ表示。日本円換算ラベルで、現地での販売価格設定をそのまま検討可能。</p>
+    <div class="section-head reveal">
+      <div class="label"><span class="num">04</span>Price</div>
+      <div>
+        <h2><span class="en">Acceptable Price Range</span>各体験の許容価格帯</h2>
+        <p class="sub">「興味あり」と回答した方の価格レンジを積み上げ表示。日本円換算ラベルで、現地での販売価格設定をそのまま検討可能。</p>
+      </div>
     </div>
-    <div class="exp-grid" id="price-grid"></div>
-    <div class="insight">
-      <div class="label">AI Insight</div>
-      温泉旅館は<strong>1泊2食22,000円未満が42.3%、22,000〜44,000円が39.3%</strong>と二極化。前者は若年・カップル層、後者はファミリー・上級層の財布感と推定でき、米沢牛会席プラン／ベーシックプランの二層展開が理にかなう。<br>
+    <div class="exp-grid reveal" id="price-grid"></div>
+    <div class="insight reveal">
+      <p class="label">Insight</p>
+      <p class="text">温泉旅館は<strong>1泊2食22,000円未満が42.3%、22,000〜44,000円が39.3%</strong>と二極化。前者は若年・カップル層、後者はファミリー・上級層の財布感と推定でき、米沢牛会席プラン／ベーシックプランの二層展開が理にかなう。<br>
       米沢牛グルメ体験は<strong>4,400〜8,800円帯（46.0%）</strong>がボリュームゾーンで、半日の食事＋見学で1人8,000円前後の商品が王道価格。酒蔵・織物・かてものの3体験は<strong>2,200〜4,400円が約4〜5割</strong>で重なり、3,500〜4,000円の価格帯設定が最も需要を取り込みやすい。<br>
-      雪上体験は<strong>4,400〜8,800円が41.7%</strong>、廃校宿泊「とここと」は<strong>4,400〜13,200円が44.2%</strong>と、それぞれ半日体験／1泊朝食の妥当ライン。10,000円超の高額帯にも一定数（雪上6.5%、温泉14.5%）が存在し、プレミアム枠の余地もある。
+      雪上体験は<strong>4,400〜8,800円が41.7%</strong>、廃校宿泊「とここと」は<strong>4,400〜13,200円が44.2%</strong>と、それぞれ半日体験／1泊朝食の妥当ライン。10,000円超の高額帯にも一定数（雪上6.5%、温泉14.5%）が存在し、プレミアム枠の余地もある。</p>
     </div>
   </div>
 </section>
 
-<!-- ============== 5 CHANNELS ============== -->
-<section id="channel">
+<!-- ============== 05 CHANNEL ============== -->
+<section class="section" id="channel">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="num">05 / CHANNEL</div>
-      <h2>情報収集チャネル（複数回答）</h2>
-      <p class="sub">日本国内の感覚と異なり、台湾市場ではFacebookとLINEがいまも現役。事業者の発信先を「日本=Instagram優先」で固定すると機会を逃す。</p>
+    <div class="section-head reveal">
+      <div class="label"><span class="num">05</span>Channel</div>
+      <div>
+        <h2><span class="en">Information Channels (Multi-select)</span>情報収集チャネル</h2>
+        <p class="sub">日本国内の感覚と異なり、台湾市場では<strong>FacebookとLINE</strong>がいまも現役。事業者の発信先を「日本=Instagram優先」で固定すると機会を逃す。</p>
+      </div>
     </div>
-    <div class="card">
-      <div class="chart-wrap tall"><canvas id="channel-chart"></canvas></div>
+    <div class="chart-card reveal">
+      <p class="title">Channel Distribution<span class="ja">情報収集チャネル（複数回答 / n = 940）</span></p>
+      <div class="chart-wrap" style="height:480px;"><canvas id="channel-chart"></canvas></div>
     </div>
-    <div class="insight">
-      <div class="label">AI Insight</div>
-      最多は<strong>Google等の検索エンジン（420件）</strong>で、繁体字SEO（旅館名・米沢牛・温泉名で検索した際の自社サイトの順位）の優先度が高い。<br>
+    <div class="insight reveal">
+      <p class="label">Insight</p>
+      <p class="text">最多は<strong>Google等の検索エンジン（420件）</strong>で、繁体字SEO（旅館名・米沢牛・温泉名で検索した際の自社サイトの順位）の優先度が高い。<br>
       続く<strong>Facebook（398件）・Instagram（395件）はほぼ同数</strong>で、台湾ではFacebookが現役のメインチャネル。日本側でInstagramに偏った運用をしている事業者は、Facebookページ＋繁体字投稿の併設が必須レベル。<br>
-      <strong>旅展（365件）</strong>がGoogle・SNSに次ぐ第3位で、今回のような旅展への継続出展はROIの高い接点である。なお抖音（TikTok）は28件と少なく、若年層集客のために抖音へ過剰投資する必要は現時点で低い。
+      <strong>旅展（365件）</strong>がGoogle・SNSに次ぐ第3位で、今回のような旅展への継続出展はROIの高い接点である。なお抖音（TikTok）は28件と少なく、若年層集客のために抖音へ過剰投資する必要は現時点で低い。</p>
     </div>
   </div>
 </section>
 
-<!-- ============== 6 FACTORS ============== -->
-<section id="factor">
+<!-- ============== 06 FACTOR ============== -->
+<section class="section" id="factor">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="num">06 / FACTOR</div>
-      <h2>体験選択時の最重要因子</h2>
-      <p class="sub">「ここでしか体験できない独自性」が他の項目を圧倒。米沢の歴史・伝統文化・上杉文化を起点とする商品設計が、最大の説得力を持つ。</p>
-    </div>
-    <div class="two-col">
-      <div class="card">
-        <div class="chart-wrap"><canvas id="factor-chart"></canvas></div>
-      </div>
-      <div class="card">
-        <h3 style="font-size:18px;color:#fff;margin-bottom:18px">読み解きキーワード</h3>
-        <p style="color:#cdd6e3;font-size:14px;margin-bottom:14px">独自性・専属性は<strong style="color:var(--gold-soft)">53.4%</strong>で1位。続いて家族向け（22.5%）・SNS映え（19.5%）が拮抗。</p>
-        <p style="color:#cdd6e3;font-size:14px;margin-bottom:14px">「外語サービス対応」は52件（5.6%）と多くないが、温泉旅館・酒蔵の現場では繁体字メニューや簡単な中国語対応の用意が満足度の底上げに直結する。</p>
-        <p style="color:#cdd6e3;font-size:14px">自由記述に「希望有戰國武將的相關行程（戦国武将ツアー希望）」があった通り、上杉謙信・直江兼続といった<strong style="color:var(--gold-soft)">独自IP</strong>の活用余地は大きい。</p>
+    <div class="section-head reveal">
+      <div class="label"><span class="num">06</span>Factor</div>
+      <div>
+        <h2><span class="en">Decision Factors</span>体験選択時の最重要因子</h2>
+        <p class="sub"><strong>「ここでしか体験できない独自性」</strong>が他の項目を圧倒。米沢の歴史・伝統文化・上杉文化を起点とする商品設計が、最大の説得力を持つ。</p>
       </div>
     </div>
-    <div class="insight">
-      <div class="label">AI Insight</div>
-      重視点1位の「独自性」が496件（53.4%）と過半を占めた。温泉旅館・酒蔵の事業者にとっては、「温泉に入れる」「日本酒が飲める」だけでは台湾客には響きにくく、<strong>米沢藩・上杉家の歴史、紅花染め、かてもの食文化、雪国ならではの冬体験</strong>といった<strong>"米沢でなければ体験できない物語"</strong>を、商品名・パンフレット・SNS投稿のトップに据えるべき。<br>
-      また家族同遊（209件）・SNS映え（181件）は、客層別の二次訴求軸として効く。ファミリー向けには雪上＋米沢牛、SNS映え向けには紅花染め＋廃校宿泊といったクラスタ別パッケージが想定できる。
+    <div class="two-col reveal">
+      <div class="chart-card">
+        <p class="title">Factor Share<span class="ja">体験選択時の最重要因子（n = 940）</span></p>
+        <div class="chart-wrap" style="height:380px;"><canvas id="factor-chart"></canvas></div>
+      </div>
+      <div class="factor-box">
+        <p class="title">Reading the Keywords</p>
+        <p>独自性・専属性は<strong>53.4%</strong>で1位。続いて家族向け（22.5%）・SNS映え（19.5%）が拮抗。</p>
+        <p>「外語サービス対応」は52件（5.6%）と多くないが、温泉旅館・酒蔵の現場では<strong>繁体字メニューや簡単な中国語対応</strong>の用意が満足度の底上げに直結する。</p>
+        <p>自由記述に「希望有戰國武將的相關行程（戦国武将ツアー希望）」があった通り、<strong>上杉謙信・直江兼続といった独自IP</strong>の活用余地は大きい。</p>
+      </div>
+    </div>
+    <div class="insight reveal">
+      <p class="label">Insight</p>
+      <p class="text">重視点1位の「独自性」が<strong>496件（53.4%）</strong>と過半を占めた。温泉旅館・酒蔵の事業者にとっては、「温泉に入れる」「日本酒が飲める」だけでは台湾客には響きにくく、<strong>米沢藩・上杉家の歴史、紅花染め、かてもの食文化、雪国ならではの冬体験</strong>といった<strong>"米沢でなければ体験できない物語"</strong>を、商品名・パンフレット・SNS投稿のトップに据えるべき。<br>
+      また家族同遊（209件）・SNS映え（181件）は、客層別の二次訴求軸として効く。ファミリー向けには雪上＋米沢牛、SNS映え向けには紅花染め＋廃校宿泊といったクラスタ別パッケージが想定できる。</p>
     </div>
   </div>
 </section>
 
-<!-- ============== 7 VOICE ============== -->
-<section id="voice">
+<!-- ============== 07 VOICE ============== -->
+<section class="section" id="voice">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="num">07 / VOICE</div>
-      <h2>来場者からの自由記述</h2>
-      <p class="sub">「無」「沒有」等を除いた有効回答のみを掲載。タグはAIによる自動判定（POSITIVE：好意的／IMPROVE：要望・改善／NEUTRAL：中立）。</p>
+    <div class="section-head reveal">
+      <div class="label"><span class="num">07</span>Voices</div>
+      <div>
+        <h2><span class="en">Free-text Highlights</span>来場者からの自由記述</h2>
+        <p class="sub">「無」「沒有」等を除いた有効回答のみを掲載。タグはAIによる自動判定（<strong>POSITIVE</strong>：好意的／<strong>IMPROVE</strong>：要望・改善／NEUTRAL：中立）。</p>
+      </div>
     </div>
-    <div class="cmt-grid" id="cmt-grid"></div>
-    <div class="insight" style="margin-top:30px">
-      <div class="label">AI Insight</div>
-      接客評価は「服務人員親切」「很熱情」「超級熱情」「很熱誠」など現場スタッフの応対への賛辞が突出して多く、ブース運営の質は資産化できている。<br>
-      改善要望は<strong>露出強化系（更明顯的曝光／多與遊客宣傳／沒有讓人認識米澤市很可惜）と、コンテンツ拡充系（戰國武將行程／電子影片展示／更詳細的配套資訊／實體地方創生品展示）</strong>に大別できる。前者は次回以降の集客動線、後者は商品造成（武将ストーリーツアー・動画コンテンツ・詳細パンフ・物販）への直接的な示唆である。
+    <div class="voices-grid reveal" id="cmt-grid"></div>
+    <div class="insight reveal" style="margin-top:48px">
+      <p class="label">Insight</p>
+      <p class="text">接客評価は<strong>「服務人員親切」「很熱情」「超級熱情」「很熱誠」</strong>など現場スタッフの応対への賛辞が突出して多く、ブース運営の質は資産化できている。<br>
+      改善要望は<strong>露出強化系（更明顯的曝光／多與遊客宣傳／沒有讓人認識米澤市很可惜）</strong>と<strong>コンテンツ拡充系（戰國武將行程／電子影片展示／更詳細的配套資訊／實體地方創生品展示）</strong>に大別できる。前者は次回以降の集客動線、後者は商品造成（武将ストーリーツアー・動画コンテンツ・詳細パンフ・物販）への直接的な示唆である。</p>
     </div>
   </div>
 </section>
 
 <!-- ============== FOOTER ============== -->
-<footer>
+<footer class="foot">
   <div class="wrap">
-    <div class="brand">作成：プラットヨネザワ</div>
-    <div class="note">本レポートはAIによる自動分析を含みます</div>
-    <div class="small">Survey period 2026.04.24 – 04.27 ｜ Venue : ATTA 台中国際旅展 ｜ N=940</div>
+    <div class="row">
+      <div class="brand">
+        プラットヨネザワ株式会社
+        <span class="en">Plat Yonezawa Inc.</span>
+      </div>
+      <a class="back" href="https://platkokoro.github.io/atta-taichung-2026/">← Archive Index</a>
+    </div>
+    <p class="copy">© 2026 PLAT YONEZAWA Inc. — 本レポートはAIによる自動分析を含みます　|　Survey period 2026.04.24 – 04.27　|　Venue : ATTA 台中国際旅展　|　N=940</p>
   </div>
 </footer>
 
 <script>
-/* =========================================================
-   DATA
-========================================================= */
+/* ========== DATA ========== */
 const DATA = {
   satisfaction:{avg:8.8,n:940,dist:{1:23,2:3,3:9,4:5,5:30,6:31,7:53,8:133,9:108,10:545}},
   visit:{avg:8.21,n:940,dist:{1:15,2:5,3:13,4:18,5:48,6:71,7:92,8:196,9:117,10:365}},
   experiences:[
     {key:'onsen',name:'温泉旅館宿泊',interested:918,valid:940,rate:97.7,
       prices:[
-        {label:'〜22,000円未満',ja:'不到5,000元台幣',count:383,pct:42.3},
-        {label:'22,000〜44,000円',ja:'5,000-10,000元台幣',count:356,pct:39.3},
-        {label:'44,000〜66,000円',ja:'10,000-15,000元台幣',count:131,pct:14.5},
-        {label:'66,000円以上',ja:'15,000元台幣或以上',count:35,pct:3.9}
+        {label:'〜22,000円未満',count:383,pct:42.3},
+        {label:'22,000〜44,000円',count:356,pct:39.3},
+        {label:'44,000〜66,000円',count:131,pct:14.5},
+        {label:'66,000円以上',count:35,pct:3.9}
       ],
       hl:'1泊2食 22,000円未満（42.3%）と22,000〜44,000円（39.3%）の二極化。価格二層プランが有効。'},
     {key:'snow',name:'雪上体験',interested:897,valid:940,rate:95.4,
       prices:[
-        {label:'4,400〜8,800円',ja:'1,000~2,000元台幣',count:371,pct:41.7},
-        {label:'4,400円未満',ja:'不到1,000元台幣',count:260,pct:29.2},
-        {label:'8,800〜17,600円',ja:'2,000-4,000元台幣',count:201,pct:22.6},
-        {label:'17,600円以上',ja:'4,000元台幣或以上',count:58,pct:6.5}
+        {label:'4,400〜8,800円',count:371,pct:41.7},
+        {label:'4,400円未満',count:260,pct:29.2},
+        {label:'8,800〜17,600円',count:201,pct:22.6},
+        {label:'17,600円以上',count:58,pct:6.5}
       ],
       hl:'半日の雪上体験は4,400〜8,800円が中心。送迎込みで6,500円前後が射程。'},
     {key:'katemono',name:'かてもの体験',interested:881,valid:940,rate:93.7,
       prices:[
-        {label:'2,200〜4,400円',ja:'500-1,000元台幣',count:347,pct:40.0},
-        {label:'〜2,200円未満',ja:'不到500元台幣',count:343,pct:39.6},
-        {label:'4,400〜8,800円',ja:'1,000-2,000元台幣',count:140,pct:16.1},
-        {label:'8,800円以上',ja:'2,000元台幣或以上',count:37,pct:4.3}
+        {label:'2,200〜4,400円',count:347,pct:40.0},
+        {label:'〜2,200円未満',count:343,pct:39.6},
+        {label:'4,400〜8,800円',count:140,pct:16.1},
+        {label:'8,800円以上',count:37,pct:4.3}
       ],
       hl:'2時間の歴史ガストロノミー体験は2,200〜4,400円ゾーンが厚い。'},
     {key:'beef',name:'米沢牛グルメ体験',interested:880,valid:940,rate:93.6,
       prices:[
-        {label:'4,400〜8,800円',ja:'1,000~2,000元台幣',count:400,pct:46.0},
-        {label:'4,400円未満',ja:'不到1,000元台幣',count:277,pct:31.8},
-        {label:'8,800〜17,600円',ja:'2,000-4,000元台幣',count:144,pct:16.6},
-        {label:'17,600円以上',ja:'4,000元台幣或以上',count:49,pct:5.6}
+        {label:'4,400〜8,800円',count:400,pct:46.0},
+        {label:'4,400円未満',count:277,pct:31.8},
+        {label:'8,800〜17,600円',count:144,pct:16.6},
+        {label:'17,600円以上',count:49,pct:5.6}
       ],
       hl:'半日プランは8,000円前後が王道。17,600円以上のプレミア層も5.6%存在。'},
     {key:'sake',name:'酒蔵体験',interested:878,valid:940,rate:93.4,
       prices:[
-        {label:'2,200〜4,400円',ja:'500-1,000元台幣',count:397,pct:45.4},
-        {label:'〜2,200円未満',ja:'不到500元台幣',count:269,pct:30.8},
-        {label:'4,400〜8,800円',ja:'1,000-2,000元台幣',count:138,pct:15.8},
-        {label:'8,800円以上',ja:'2,000元台幣或以上',count:70,pct:8.0}
+        {label:'2,200〜4,400円',count:397,pct:45.4},
+        {label:'〜2,200円未満',count:269,pct:30.8},
+        {label:'4,400〜8,800円',count:138,pct:15.8},
+        {label:'8,800円以上',count:70,pct:8.0}
       ],
       hl:'90分の酒蔵見学＋テイスティングは3,000〜4,000円が最頻。'},
     {key:'textile',name:'織物体験（紅花染め）',interested:877,valid:940,rate:93.3,
       prices:[
-        {label:'2,200〜4,400円',ja:'500-1,000元台幣',count:402,pct:46.3},
-        {label:'〜2,200円未満',ja:'不到500元台幣',count:299,pct:34.4},
-        {label:'4,400〜8,800円',ja:'1,000-2,000元台幣',count:120,pct:13.8},
-        {label:'8,800円以上',ja:'2,000元台幣或以上',count:48,pct:5.5}
+        {label:'2,200〜4,400円',count:402,pct:46.3},
+        {label:'〜2,200円未満',count:299,pct:34.4},
+        {label:'4,400〜8,800円',count:120,pct:13.8},
+        {label:'8,800円以上',count:48,pct:5.5}
       ],
       hl:'成品持ち帰り付き60〜90分体験は3,000円前後がボリューム。'},
     {key:'tokokoto',name:'とここと（廃校宿泊）',interested:860,valid:940,rate:91.5,
       prices:[
-        {label:'4,400〜13,200円',ja:'1,000~3,000元台幣',count:375,pct:44.2},
-        {label:'4,400円未満',ja:'不到1,000元台幣',count:276,pct:32.5},
-        {label:'13,200〜22,000円',ja:'3,000-5,000元台幣',count:154,pct:18.1},
-        {label:'22,000円以上',ja:'5,000元台幣或以上',count:44,pct:5.2}
+        {label:'4,400〜13,200円',count:375,pct:44.2},
+        {label:'4,400円未満',count:276,pct:32.5},
+        {label:'13,200〜22,000円',count:154,pct:18.1},
+        {label:'22,000円以上',count:44,pct:5.2}
       ],
       hl:'1泊朝食付きで8,000〜10,000円が中心。家族グループ需要が見込める。'}
   ],
   channels:[
-    {key:'search',label:'Google等 検索エンジン',v:420},
-    {key:'facebook',label:'Facebook',v:398},
-    {key:'instagram',label:'Instagram',v:395},
-    {key:'travel_fair',label:'旅展（ATTA等）',v:365},
-    {key:'youtube',label:'YouTube',v:266},
-    {key:'travel_agency',label:'旅行社',v:167},
-    {key:'line',label:'LINE',v:146},
-    {key:'word_of_mouth',label:'家族・友人の口コミ',v:114},
-    {key:'magazine',label:'旅行雑誌・ブログ',v:103},
-    {key:'tiktok',label:'抖音（TikTok）',v:28}
+    {label:'Google等 検索エンジン',v:420},
+    {label:'Facebook',v:398},
+    {label:'Instagram',v:395},
+    {label:'旅展（ATTA等）',v:365},
+    {label:'YouTube',v:266},
+    {label:'旅行社',v:167},
+    {label:'LINE',v:146},
+    {label:'家族・友人の口コミ',v:114},
+    {label:'旅行雑誌・ブログ',v:103},
+    {label:'抖音（TikTok）',v:28}
   ],
   factors:[
-    {label:'独自性／専属性',raw:'獨特性／專屬性',v:496,c:'#c9a227'},
-    {label:'家族・親子向け',raw:'是否適合親子與家庭同遊',v:209,c:'#7aa2c9'},
-    {label:'SNS映え',raw:'美感／拍照吸引力',v:181,c:'#c97a7a'},
-    {label:'外国語対応',raw:'是否提供外語服務',v:52,c:'#7ac9a2'},
-    {label:'その他',raw:'療癒・百名城等',v:2,c:'#7a7a8a'}
+    {label:'独自性／専属性',v:496},
+    {label:'家族・親子向け',v:209},
+    {label:'SNS映え',v:181},
+    {label:'外国語対応',v:52},
+    {label:'その他',v:2}
   ],
   comments:[
     {n:62,t:'pos',body:'謝謝米澤市的介紹^^',ja:'米沢市の紹介に感謝'},
@@ -513,7 +485,7 @@ const DATA = {
     {n:802,t:'pos',body:'不錯推廣',ja:'良いPR'},
     {n:804,t:'imp',body:'請增加實體地方創生品展示',ja:'地方創生品の実物展示を増やしてほしい'},
     {n:896,t:'pos',body:'很熱誠，讚',ja:'とても熱心、いいね'},
-    {n:916,t:'pos',body:'Good（Goid）',ja:''},
+    {n:916,t:'pos',body:'Good',ja:''},
     {n:918,t:'pos',body:'服務人員親切',ja:'スタッフが親切'},
     {n:927,t:'pos',body:'服務人員很親切，活動也很棒',ja:'スタッフが親切でイベントも素晴らしい'},
     {n:932,t:'neu',body:'目前沒有',ja:'現状なし'},
@@ -521,19 +493,12 @@ const DATA = {
   ]
 };
 
-/* =========================================================
-   COMMON CHART OPTIONS
-========================================================= */
-Chart.defaults.color = '#cdd6e3';
-Chart.defaults.font.family = "'Noto Sans JP',sans-serif";
+/* ========== Chart defaults ========== */
+Chart.defaults.color = '#888888';
+Chart.defaults.font.family = "'Inter','Noto Sans JP',sans-serif";
 Chart.defaults.font.size = 12;
-Chart.defaults.borderColor = 'rgba(201,162,39,.15)';
 
-const PALETTE = ['#c9a227','#e0bf4c','#a37a17','#7aa2c9','#c97a7a','#7ac9a2','#9b7ac9','#c9b27a','#7ac9c1','#7a7a8a'];
-
-/* =========================================================
-   1. SCORE DISTRIBUTIONS (manual horizontal bars for clarity)
-========================================================= */
+/* ========== 1. Score distribution ========== */
 function renderScoreDist(containerId, dist){
   const el = document.getElementById(containerId);
   const max = Math.max(...Object.values(dist));
@@ -546,7 +511,7 @@ function renderScoreDist(containerId, dist){
     html += `<div class="score-row">
       <div class="s">${s}</div>
       <div class="b"><div class="f" style="width:${w}%">${v>0&&w>15?v:''}</div></div>
-      <div class="n">${v} <span style="color:var(--muted);font-size:11px">(${pct}%)</span></div>
+      <div class="n">${v}<span class="pct">(${pct}%)</span></div>
     </div>`;
   }
   el.innerHTML = html;
@@ -554,52 +519,37 @@ function renderScoreDist(containerId, dist){
 renderScoreDist('sat-dist', DATA.satisfaction.dist);
 renderScoreDist('visit-dist', DATA.visit.dist);
 
-/* =========================================================
-   2. INTEREST CHART
-========================================================= */
+/* ========== 2. Interest chart ========== */
 {
   const sorted = [...DATA.experiences].sort((a,b)=>b.rate-a.rate);
-  new Chart(document.getElementById('interest-chart'), {
+  new Chart(document.getElementById('interest-chart'),{
     type:'bar',
     data:{
       labels: sorted.map(e=>e.name),
       datasets:[{
-        label:'興味あり率(%)',
         data: sorted.map(e=>e.rate),
-        backgroundColor: sorted.map((_,i)=>i===0?'#e0bf4c':'#c9a227'),
-        borderRadius:6,
-        maxBarThickness:38
+        backgroundColor: sorted.map((_,i)=>i===0?'#0a1628':i<=2?'#3a4a6a':i<=4?'#6a7488':'#b8b8b8'),
+        borderRadius:0, borderSkipped:false, barThickness:28
       }]
     },
     options:{
-      indexAxis:'y',
-      responsive:true,
-      maintainAspectRatio:false,
+      indexAxis:'y', responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}, tooltip:{
+        backgroundColor:'#0d0d0d', titleColor:'#fff', bodyColor:'#fff', padding:10, displayColors:false,
+        callbacks:{label:ctx=>{const e=sorted[ctx.dataIndex]; return ` ${e.rate}% (${e.interested}件 / ${e.valid}件)`}}
+      }},
       scales:{
-        x:{min:85,max:100,grid:{color:'rgba(201,162,39,.08)'},ticks:{callback:v=>v+'%'}},
-        y:{grid:{display:false}}
-      },
-      plugins:{
-        legend:{display:false},
-        tooltip:{
-          callbacks:{
-            label:(ctx)=>{
-              const e = sorted[ctx.dataIndex];
-              return ` ${e.rate}% （${e.interested}件 / ${e.valid}件）`;
-            }
-          }
-        }
+        x:{min:88, max:100, grid:{color:'#eeeeee', drawTicks:false}, border:{display:false}, ticks:{color:'#888888', font:{size:11}, callback:v=>v+'%'}},
+        y:{grid:{display:false}, border:{display:false}, ticks:{color:'#0d0d0d', font:{size:12}}}
       }
     }
   });
 }
 
-/* =========================================================
-   3. PRICE GRID
-========================================================= */
+/* ========== 3. Price grid (stacked bars per experience) ========== */
 {
   const grid = document.getElementById('price-grid');
-  const palette = ['#c9a227','#e0bf4c','#a37a17','#6e5511'];
+  const palette = ['#0a1628','#3a4a6a','#6a7488','#b8b8b8'];
   DATA.experiences.forEach(e=>{
     const total = e.prices.reduce((a,b)=>a+b.count,0);
     const segs = e.prices.map((p,i)=>{
@@ -609,89 +559,64 @@ renderScoreDist('visit-dist', DATA.visit.dist);
     const legend = e.prices.map((p,i)=>`
       <div class="row">
         <div><span class="swatch" style="background:${palette[i]}"></span><span class="lbl">${p.label}</span></div>
-        <div class="val">${p.count}<span style="color:#9fb0c8;font-size:11px;margin-left:6px">(${p.pct}%)</span></div>
+        <div class="val">${p.count}<span class="pct">${p.pct}%</span></div>
       </div>`).join('');
     grid.insertAdjacentHTML('beforeend',`
       <div class="exp-card">
         <div class="name">${e.name}</div>
-        <div class="meta">興味あり ${e.interested} / 全 ${e.valid}（${e.rate}%）｜ 価格回答 n=${total}</div>
-        <div class="exp-headline">${e.hl}</div>
+        <div class="meta">Interest ${e.rate}%（${e.interested}件 / ${e.valid}件）｜n_price = ${total}</div>
+        <div class="headline">${e.hl}</div>
         <div class="price-bar">${segs}</div>
         <div class="price-legend">${legend}</div>
       </div>`);
   });
 }
 
-/* =========================================================
-   4. CHANNEL CHART
-========================================================= */
+/* ========== 4. Channel chart ========== */
 {
   const sorted = [...DATA.channels].sort((a,b)=>b.v-a.v);
-  new Chart(document.getElementById('channel-chart'), {
+  new Chart(document.getElementById('channel-chart'),{
     type:'bar',
     data:{
       labels: sorted.map(c=>c.label),
       datasets:[{
-        label:'回答数',
         data: sorted.map(c=>c.v),
-        backgroundColor: sorted.map((_,i)=>i<3?'#c9a227':'#7aa2c9'),
-        borderRadius:6,
-        maxBarThickness:30
+        backgroundColor: sorted.map((_,i)=>i<3?'#0a1628':i<6?'#6a7488':'#b8b8b8'),
+        borderRadius:0, borderSkipped:false, barThickness:24
       }]
     },
     options:{
-      indexAxis:'y',
-      responsive:true,
-      maintainAspectRatio:false,
+      indexAxis:'y', responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}, tooltip:{
+        backgroundColor:'#0d0d0d', titleColor:'#fff', bodyColor:'#fff', padding:10, displayColors:false,
+        callbacks:{label:ctx=>` ${ctx.parsed.x}件（${(ctx.parsed.x/940*100).toFixed(1)}%）`}
+      }},
       scales:{
-        x:{grid:{color:'rgba(201,162,39,.08)'},ticks:{stepSize:50}},
-        y:{grid:{display:false}}
-      },
-      plugins:{
-        legend:{display:false},
-        tooltip:{
-          callbacks:{
-            label:(ctx)=>` ${ctx.parsed.x}件（全940名中 ${(ctx.parsed.x/940*100).toFixed(1)}%）`
-          }
-        }
+        x:{beginAtZero:true, grid:{color:'#eeeeee', drawTicks:false}, border:{display:false}, ticks:{color:'#888888', font:{size:11}, stepSize:50}},
+        y:{grid:{display:false}, border:{display:false}, ticks:{color:'#0d0d0d', font:{size:12}}}
       }
     }
   });
 }
 
-/* =========================================================
-   5. FACTOR DONUT
-========================================================= */
+/* ========== 5. Factor donut ========== */
 {
-  new Chart(document.getElementById('factor-chart'), {
+  new Chart(document.getElementById('factor-chart'),{
     type:'doughnut',
     data:{
       labels: DATA.factors.map(f=>f.label),
       datasets:[{
         data: DATA.factors.map(f=>f.v),
-        backgroundColor: DATA.factors.map(f=>f.c),
-        borderColor:'#0a1628',
-        borderWidth:3,
-        hoverOffset:6
+        backgroundColor:['#0a1628','#3a4a6a','#6a7488','#9aa0ac','#d8dadf'],
+        borderColor:'#ffffff', borderWidth:2, hoverOffset:6
       }]
     },
     options:{
-      responsive:true,
-      maintainAspectRatio:false,
-      cutout:'62%',
+      responsive:true, maintainAspectRatio:false, cutout:'62%',
       plugins:{
-        legend:{
-          position:'bottom',
-          labels:{padding:14,font:{size:12},boxWidth:12,boxHeight:12}
-        },
-        tooltip:{
-          callbacks:{
-            label:(ctx)=>{
-              const total = DATA.factors.reduce((a,b)=>a+b.v,0);
-              return ` ${ctx.parsed}件（${(ctx.parsed/total*100).toFixed(1)}%）`;
-            }
-          }
-        }
+        legend:{position:'bottom', labels:{color:'#3a3a3a', font:{size:11.5}, boxWidth:10, boxHeight:10, padding:14, usePointStyle:false}},
+        tooltip:{backgroundColor:'#0d0d0d', titleColor:'#fff', bodyColor:'#fff', padding:10,
+          callbacks:{label:ctx=>{const total=DATA.factors.reduce((a,b)=>a+b.v,0); return ` ${ctx.parsed}件（${(ctx.parsed/total*100).toFixed(1)}%）`}}}
       }
     },
     plugins:[{
@@ -700,51 +625,50 @@ renderScoreDist('visit-dist', DATA.visit.dist);
         const {ctx,chartArea:{left,right,top,bottom}} = chart;
         const cx = (left+right)/2, cy = (top+bottom)/2;
         ctx.save();
-        ctx.fillStyle = '#c9a227';
-        ctx.font = "700 11px 'DM Serif Display',serif";
+        ctx.fillStyle = '#888888';
+        ctx.font = "500 10.5px 'Inter',sans-serif";
         ctx.textAlign = 'center';
         ctx.fillText('TOTAL', cx, cy-12);
-        ctx.fillStyle = '#fff';
-        ctx.font = "700 28px 'DM Serif Display',serif";
+        ctx.fillStyle = '#0d0d0d';
+        ctx.font = "200 32px 'Noto Sans JP',sans-serif";
         const total = DATA.factors.reduce((a,b)=>a+b.v,0);
-        ctx.fillText(total, cx, cy+14);
-        ctx.fillStyle = '#9fb0c8';
-        ctx.font = "400 11px 'Noto Sans JP',sans-serif";
-        ctx.fillText('responses', cx, cy+30);
+        ctx.fillText(total, cx, cy+16);
+        ctx.fillStyle = '#888888';
+        ctx.font = "400 10.5px 'Inter',sans-serif";
+        ctx.fillText('responses', cx, cy+32);
         ctx.restore();
       }
     }]
   });
 }
 
-/* =========================================================
-   6. COMMENTS
-========================================================= */
+/* ========== 6. Voices grid ========== */
 {
   const grid = document.getElementById('cmt-grid');
-  const tagMap = {pos:['POSITIVE','tag-pos'],imp:['IMPROVE','tag-imp'],neu:['NEUTRAL','tag-neu']};
+  const tagLabel = {pos:'POSITIVE', imp:'IMPROVE', neu:'NEUTRAL'};
   DATA.comments.forEach(c=>{
-    const [tagText,tagCls] = tagMap[c.t];
     grid.insertAdjacentHTML('beforeend',`
-      <div class="cmt">
+      <div class="voice-card">
         <div class="head">
-          <div class="num">#${String(c.n).padStart(3,'0')}</div>
-          <div class="tag ${tagCls}">${tagText}</div>
+          <span class="num">No. ${c.n}</span>
+          <span class="tag tag-${c.t}">${tagLabel[c.t]}</span>
         </div>
         <div class="body">${c.body}</div>
-        ${c.ja?`<div class="ja">▸ ${c.ja}</div>`:''}
+        ${c.ja?`<div class="ja">${c.ja}</div>`:''}
       </div>`);
   });
 }
 
-/* smooth scroll */
-document.querySelectorAll('.toc a').forEach(a=>{
-  a.addEventListener('click',(e)=>{
-    e.preventDefault();
-    const el = document.querySelector(a.getAttribute('href'));
-    if(el) window.scrollTo({top:el.offsetTop-60,behavior:'smooth'});
+/* ========== Reveal ========== */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
   });
-});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
