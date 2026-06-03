@@ -326,6 +326,130 @@ footer .note{
 .section .cards > *:nth-child(3){animation-delay:.16s}
 .section .cards > *:nth-child(4){animation-delay:.22s}
 .section .cards > *:nth-child(5){animation-delay:.28s}
+
+/* ===== Trend (Round-over-Round comparison) ===== */
+.trend{
+  padding:64px 0 40px;
+  background:linear-gradient(180deg,#0a1628 0%,#0c1a30 100%);
+  border-bottom:1px solid var(--line);
+}
+.trend .section-head{margin-bottom:28px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.trend .section-head .num{font-family:'DM Serif Display',serif;color:var(--gold);font-size:13px;letter-spacing:.4em}
+.trend .section-head h2{font-size:clamp(22px,2.8vw,30px);color:#fff;margin-top:6px}
+.trend .section-head .right{font-family:'DM Serif Display',serif;color:var(--muted);font-size:13px;letter-spacing:.2em}
+.trend .lead{
+  color:var(--muted);
+  max-width:760px;
+  font-size:14.5px;
+  margin-bottom:28px;
+}
+.trend-table-wrap{
+  overflow-x:auto;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:rgba(255,255,255,.015);
+}
+.trend-table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:680px;
+  font-size:14.5px;
+}
+.trend-table th,.trend-table td{
+  padding:14px 18px;
+  text-align:left;
+  border-bottom:1px solid rgba(201,162,39,.10);
+}
+.trend-table thead th{
+  background:rgba(201,162,39,.06);
+  color:var(--gold-soft);
+  font-family:'DM Serif Display',serif;
+  font-weight:400;
+  font-size:12.5px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  border-bottom:1px solid var(--line);
+  white-space:nowrap;
+}
+.trend-table tbody tr{transition:background .15s}
+.trend-table tbody tr:hover{background:rgba(201,162,39,.04)}
+.trend-table tbody tr:last-child td{border-bottom:none}
+.trend-table .round-cell{
+  font-family:'Noto Serif JP',serif;
+  font-weight:700;
+  color:#fff;
+  white-space:nowrap;
+}
+.trend-table .round-cell .badge{
+  display:inline-block;
+  font-family:'DM Serif Display',serif;
+  background:var(--gold);
+  color:var(--navy);
+  font-size:11px;
+  padding:2px 8px;
+  border-radius:4px;
+  margin-right:8px;
+  letter-spacing:.06em;
+  vertical-align:middle;
+}
+.trend-table .date-cell{
+  font-family:'DM Serif Display',serif;
+  color:var(--muted);
+  white-space:nowrap;
+}
+.trend-table .num-cell{
+  font-family:'DM Serif Display',serif;
+  color:var(--gold-soft);
+  font-size:16px;
+  text-align:right;
+  white-space:nowrap;
+}
+.trend-table .num-cell sup{
+  font-size:.7em;
+  color:var(--gold);
+  vertical-align:super;
+  margin-left:1px;
+}
+.trend-table .top-cell{
+  color:#e8d9b0;
+  white-space:nowrap;
+}
+.trend-table tr.coming td{
+  color:var(--muted);
+  opacity:.55;
+}
+.trend-table tr.coming .round-cell{color:var(--muted);font-weight:400}
+.trend-table tr.coming .round-cell .badge{background:rgba(159,176,200,.15);color:var(--muted)}
+.trend-table .dash{color:var(--muted);opacity:.6}
+.trend-table a.report-link{
+  color:var(--gold-soft);
+  text-decoration:none;
+  font-family:'DM Serif Display',serif;
+  font-size:12px;
+  letter-spacing:.1em;
+  border-bottom:1px solid rgba(224,191,76,.3);
+  padding-bottom:1px;
+  transition:color .2s,border-color .2s;
+  white-space:nowrap;
+}
+.trend-table a.report-link:hover{
+  color:#fff;
+  border-bottom-color:#fff;
+}
+.trend-footnote{
+  margin-top:14px;
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.7;
+  padding-left:10px;
+  border-left:2px solid var(--line);
+}
+.trend-footnote .star{color:var(--gold-soft);font-weight:700;margin-right:3px}
+@media(max-width:760px){
+  .trend{padding:48px 0 32px}
+  .trend-table th,.trend-table td{padding:12px 14px;font-size:13.5px}
+  .trend-table .num-cell{font-size:14.5px}
+}
 </style>
 </head>
 <body>
@@ -342,6 +466,83 @@ footer .note{
       <div class="item"><span class="l">Event</span><span class="v">ATTA 台中国際旅展</span></div>
       <div class="item"><span class="l">Reports</span><span class="v">5 Editions</span></div>
     </div>
+  </div>
+</section>
+
+<!-- ============== TREND (Round-over-Round) ============== -->
+<section class="trend">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="num">ROUND-OVER-ROUND TREND</div>
+        <h2>ラウンド推移</h2>
+      </div>
+      <div class="right">SUMMARY</div>
+    </div>
+    <p class="lead">各回の主要指標を時系列で比較。台中マーケットにおける米沢の認知度と訪問意向の推移、希望体験のトップを一望できます。</p>
+    <div class="trend-table-wrap">
+      <table class="trend-table">
+        <thead>
+          <tr>
+            <th>回</th>
+            <th>時期</th>
+            <th style="text-align:right">有効回答</th>
+            <th style="text-align:right">米沢認知率</th>
+            <th style="text-align:right">訪問意向率</th>
+            <th>No.1 希望体験</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="round-cell"><span class="badge">R5</span>第5回</td>
+            <td class="date-cell">2026.04</td>
+            <td class="num-cell">940<sup>件</sup></td>
+            <td class="num-cell"><span class="dash">—</span></td>
+            <td class="num-cell">38.8<sup>%★</sup></td>
+            <td class="top-cell">グルメ（米沢牛・蕎麦）</td>
+            <td><a class="report-link" href="./2026-04/">レポート →</a></td>
+          </tr>
+          <tr>
+            <td class="round-cell"><span class="badge">R4</span>第4回</td>
+            <td class="date-cell">2025.10</td>
+            <td class="num-cell">803<sup>件</sup></td>
+            <td class="num-cell">55.9<sup>%</sup></td>
+            <td class="num-cell">89.3<sup>%</sup></td>
+            <td class="top-cell">グルメ（米沢牛・蕎麦）</td>
+            <td><a class="report-link" href="./2025-10/">レポート →</a></td>
+          </tr>
+          <tr>
+            <td class="round-cell"><span class="badge">R3</span>第3回</td>
+            <td class="date-cell">2025.04</td>
+            <td class="num-cell">248<sup>件</sup></td>
+            <td class="num-cell">52.0<sup>%</sup></td>
+            <td class="num-cell">94.0<sup>%</sup></td>
+            <td class="top-cell">米沢牛グルメ</td>
+            <td><a class="report-link" href="./2025-04/">レポート →</a></td>
+          </tr>
+          <tr class="coming">
+            <td class="round-cell"><span class="badge">R2</span>第2回</td>
+            <td class="date-cell">2024.10</td>
+            <td class="num-cell"><span class="dash">—</span></td>
+            <td class="num-cell"><span class="dash">—</span></td>
+            <td class="num-cell"><span class="dash">—</span></td>
+            <td class="top-cell"><span class="dash">準備中</span></td>
+            <td></td>
+          </tr>
+          <tr class="coming">
+            <td class="round-cell"><span class="badge">R1</span>第1回</td>
+            <td class="date-cell">2024.04</td>
+            <td class="num-cell"><span class="dash">—</span></td>
+            <td class="num-cell"><span class="dash">—</span></td>
+            <td class="num-cell"><span class="dash">—</span></td>
+            <td class="top-cell"><span class="dash">準備中</span></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="trend-footnote"><span class="star">★</span>第5回は設問形式が異なり、米沢認知設問なし／訪問意向は10点満点回答での「10点」回答率を表示。第3・4回は「是／否」二択での「是」割合。</p>
   </div>
 </section>
 
@@ -394,7 +595,7 @@ footer .note{
         </div>
       </a>
 
-    <!-- Round 3 (LIVE) -->
+      <!-- Round 3 (LIVE) -->
       <a class="card" href="./2025-04/" aria-label="第3回レポートを開く">
         <div class="img-wrap">
           <span class="round-badge">第3回</span>
